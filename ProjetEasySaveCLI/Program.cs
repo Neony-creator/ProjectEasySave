@@ -6,7 +6,9 @@ namespace ProjetEasySaveCLI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            controllerMain launch = new controllerMain();
+            
+            
         }
     }
 }
