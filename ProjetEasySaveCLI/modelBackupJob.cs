@@ -7,6 +7,7 @@ namespace ProjetEasySaveCLI
 {
     class modelBackupJob : modelMain
     {
+
         private const string FIRST_MENU_FR = "Que voulez-vous faire ?\n" +
             "Choisissez une des options (1,2,3,4,5):\n" +
             "1-Exécuter travaux de sauvegarde existant\n" +
@@ -24,7 +25,8 @@ namespace ProjetEasySaveCLI
         private const string TYPE_BACKUP_FR = "Veulliez choisir le type de sauvegarde\n" +
             "1-Complet\n" +
             "2-Differentiel\n";
-        private const string CONFIRMATION = "Vous confirmé les informations saisi ?";
+        private const string CONFIRMATION = "Vous confirmé les informations ? (y/n)";
+        private const string ERROR_NB_BACK_UP = "Il y a déjà 5 sauvegarde veullier en supprimer une\n";
 
 
         public string GetFirstMenuData()
@@ -56,8 +58,16 @@ namespace ProjetEasySaveCLI
         {
             return CONFIRMATION;
         }
+        
+        public string GetErrorNb()
+        {
+            return ERROR_NB_BACK_UP;
+        }
 
+        
 
+        
+        
 
     }
 }
