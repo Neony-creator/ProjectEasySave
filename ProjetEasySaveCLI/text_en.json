@@ -1,0 +1,13 @@
+{
+  "MenuLangues": "What language would you like to use?\nChoose one of the options (1,2,3):\n1-English\n2-French\n3-Return\n",
+  "MainMenu": "Welcome to the EasySave application!\nWhat do you want to do?\nChoose one of the options (1,2,3):\n1-Safeguarding work\n2-See the logs\n3-Change language\n",
+  "Error": "Error :/\nPlease check your answer\n",
+  "MenuSave": "What do you want to do?\nChoose one of the options (1,2,3,4,5):\n1-Run existing backup job\n2-Create\n3-Modify\n4-Delete\n5-Return\n",
+  "Name": "Enter the name of the backup\nName :",
+  "Source": "Enter the path of the resources to be saved\nSource:",
+  "Destination": "Enter the path of the backup location\nDestination:",
+  "Type_Backup": "Please choose the type of backup\n-Complete\n2-Differential\n",
+  "Confirmation": "Do you confirm the information entered?",
+  "MenuLogs": "Which logs do you want to display?\nChoose one of the options (1,2,3):\n1-Daily logs\n2-Status logs\n3-Return\n",
+  "MenuExecuteBackupJob": "Below the existing backup jobs, choose the one you want (1, 2, 3, 4, 5):\n1-Backup 1 :\n2-Backup 2 :\n3-Backup 3 :\n4-Backup 4 :\n5-Backup 5 :\n6-Return\n"
+}

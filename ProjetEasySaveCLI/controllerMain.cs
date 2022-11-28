@@ -24,6 +24,16 @@ namespace ProjetEasySaveCLI
                         controllerBackupJob backup = new controllerBackupJob();
                         break;
 
+                    case "2":
+                        Console.Clear();
+                        controllerLogs logs = new controllerLogs();
+                        break;
+
+                    case "3":
+                        Console.Clear();
+                        controllerLanguages language = new controllerLanguages();
+                        break;
+
                     default:
                         viewMenu.display(menu.GetError());
 

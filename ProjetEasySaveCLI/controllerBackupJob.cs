@@ -23,11 +23,16 @@ namespace ProjetEasySaveCLI
                 {
                     case "1":
                         Console.Clear();
-                        
+                        controllerExecuteBackupJob executemenu = new controllerExecuteBackupJob();
                         break;
                     case "2":
                         Console.Clear();
                         setCreationDataBackUp();
+                        break;
+
+                    case "5":
+                        Console.Clear();
+                        controllerMain mainmenu = new controllerMain();
                         break;
 
                     default:

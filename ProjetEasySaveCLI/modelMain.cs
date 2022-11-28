@@ -1,30 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Text.Json;
 
 namespace ProjetEasySaveCLI
 {
     class modelMain
     {
-        private const string MAIN_MENU_FR = "Bienvenu dans l'application EasySave ! \n" +
-            "Que voulez-vous faire ?\n" +
-            "Choisissez une des options (1,2,3):\n" +
-            "1-Travaux de sauvegarde\n" +
-            "2-Voir les logs\n" +
-            "3-Changer de langue\n";
-
-        private const string ERROR_FR = "Erreur :/\n" +
-            "Veulliez resaisir votre réponse\n";
+        private string configLanguage = "en";
+        public string ConfigLanguage
+        {
+            get { return configLanguage; }
+            set { configLanguage = value; }
+        }
 
 
         public string GetinterfaceData()
         {
-            return MAIN_MENU_FR;
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string MAIN_MENU = $"{langue.MainMenu}";
+            return MAIN_MENU;
         }
 
         public string GetError()
         {
-            return ERROR_FR;
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string ERROR = $"{langue.Error}";
+            return ERROR;
+        }
+
+        public string testLanguage()
+        {
+            string result = "";
+            switch (configLanguage)
+            {
+                case "fr":
+                    result = File.ReadAllText(@"./text_fr.json");
+                    break;
+                case "en":
+                    result = File.ReadAllText(@"./text_en.json");
+                    break;
+            }
+            return (result);
         }
     }
+
 }
