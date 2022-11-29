@@ -9,6 +9,9 @@
     <Grid Background="LightSteelBlue">
 
         <Image HorizontalAlignment="Left" Height="55" Margin="680,10,0,0" VerticalAlignment="Top" Width="110" Source="./logo_cesi.jpg"/>
+        <Button Content="See The Logs" HorizontalAlignment="Left" Height="63" Margin="343,181,0,0" VerticalAlignment="Top" Width="161"/>
+        <Button Content="Safeguarding Work" HorizontalAlignment="Left" Height="63" Margin="121,181,0,0" VerticalAlignment="Top" Width="161"/>
+        <Button Content="Change Language" HorizontalAlignment="Left" Height="63" Margin="574,181,0,0" VerticalAlignment="Top" Width="161"/>
 
     </Grid>
 </Window>
