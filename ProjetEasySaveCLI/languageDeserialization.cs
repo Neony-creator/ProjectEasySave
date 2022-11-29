@@ -17,6 +17,9 @@ namespace ProjetEasySaveCLI
             public string Type_Backup { get; set; }
             public string Confirmation { get; set; }
             public string MenuLogs { get; set; }
-            public string MenuExecuteBackupJob { get; set; }
+            public string MenuExecute { get; set; }
+            public string ErrorNB { get; set; }
+            public string MenuModiff { get; set; }
+            public string MenuSuppr { get; set; }
     }
 }

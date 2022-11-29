@@ -32,13 +32,23 @@ namespace ProjetEasySaveCLI
                     case "1":
                         Console.Clear();
                         controllerExecuteBackupJob executemenu = new controllerExecuteBackupJob();
+
                         break;
                     case "2":
                         Console.Clear();
                         verifyNbBackUp();
                         setCreationDataBackUp();
                         break;
+                    case "3":
+                        Console.Clear();
+                        controllerModiffBackupJob modiffmenu = new controllerModiffBackupJob();
 
+                        break;
+                    case "4":
+                        Console.Clear();
+                        controllerSupprBackupJob supprmenu = new controllerSupprBackupJob();
+
+                        break;
                     case "5":
                         Console.Clear();
                         controllerMain mainmenu = new controllerMain();
@@ -97,7 +107,7 @@ namespace ProjetEasySaveCLI
             public void verifyNbBackUp ()
         {            
             if(ConfigurationManager.AppSettings["nbBackUp"] == "5")
-            { viewMenu.display(menu.GetErrorNb());
+            { viewMenu.display(menu.GetErrorNB());
                /*setSupprDataBackUp();*/
             }
         }

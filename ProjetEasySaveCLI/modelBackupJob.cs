@@ -52,6 +52,33 @@ namespace ProjetEasySaveCLI
             return CONFIRMATION;
         }
 
+        public string GetErrorNB()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string ERROR_NB_BACK_UP = $"{langue.ErrorNB}";
+            return ERROR_NB_BACK_UP;
+        }
+
+        public string MenuExecute()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string MENU_EXECUTE = $"{langue.MenuExecute}";
+            return MENU_EXECUTE;
+        }
+
+        public string MenuModiff()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string MENU_MODIFF = $"{langue.MenuModiff}";
+            return MENU_MODIFF;
+        }
+
+        public string MenuSuppr()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string MENU_SUPPR = $"{langue.MenuSuppr}";
+            return MENU_SUPPR;
+        }
 
 
     }

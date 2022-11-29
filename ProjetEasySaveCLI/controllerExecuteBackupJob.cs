@@ -6,16 +6,12 @@ namespace ProjetEasySaveCLI
 {
     class controllerExecuteBackupJob
     {
-            private modelExecuteBackupJob menu = new modelExecuteBackupJob();
+            private modelBackupJob menu = new modelBackupJob();
             private viewExecuteBackupJob viewMenu = new viewExecuteBackupJob();
-            /*private string name;
-            private string source;
-            private string destination;
-            private string typeOfBackUp;
-            private string confirmation;*/
+    
             public controllerExecuteBackupJob()
             {
-                viewMenu.display(menu.GetFirstMenuData());
+                viewMenu.display(menu.MenuExecute());
                 while (true)
                 {
                     string userchoice = Console.ReadLine();

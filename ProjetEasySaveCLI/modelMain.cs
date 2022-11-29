@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Text.Json;
+using System.Configuration;
 
 namespace ProjetEasySaveCLI
 {
     class modelMain
     {
-        private string configLanguage = "en";
-        public string ConfigLanguage
-        {
-            get { return configLanguage; }
-            set { configLanguage = value; }
-        }
+        public string configLanguage = ConfigurationManager.AppSettings["language"];
+
 
 
         public string GetinterfaceData()
