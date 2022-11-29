@@ -4,10 +4,10 @@ using System.Text;
 
 namespace ProjetEasySaveCLI
 {
-    class controllerModiffBackupJob 
+    class controllerModifBackupJob 
     {
         private modelBackupJob menu = new modelBackupJob();
-        private viewModiffBackupJob viewMenu = new viewModiffBackupJob();
+        private viewModifBackupJob viewMenu = new viewModifBackupJob();
 
         private string name;
         private string source;
@@ -15,7 +15,7 @@ namespace ProjetEasySaveCLI
         private string typeOfBackUp;
         private string confirmation;
 
-        public controllerModiffBackupJob()
+        public controllerModifBackupJob()
         {
             viewMenu.display(menu.MenuModiff());
             while (true)
@@ -117,42 +117,9 @@ namespace ProjetEasySaveCLI
             }
         }
 
-        private void setCreationDataBackUp()
-        {
-            while (true)
-            {
-                viewMenu.display(menu.GetName());
-                name = Console.ReadLine();
+       
 
-                viewMenu.display(menu.GetSource());
-                source = Console.ReadLine();
-
-                viewMenu.display(menu.GetDestination());
-                destination = Console.ReadLine();
-
-                viewMenu.display(menu.GetConfirmation());
-                confirmation = Console.ReadLine();
-
-                if (confirmation == "y")
-                {
-
-                    viewMenu.display(menu.GetTypeBackUp());
-                    typeOfBackUp = Console.ReadLine();
-                    if (typeOfBackUp == "1")
-                    {
-                        typeOfBackUp = "complete";
-                    }
-                    else
-                    {
-                        typeOfBackUp = "differential";
-                    }
-
-                }
-
-
-            }
-
-        }
+        
 
 
     }

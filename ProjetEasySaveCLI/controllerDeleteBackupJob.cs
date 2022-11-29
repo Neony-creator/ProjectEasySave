@@ -4,14 +4,14 @@ using System.Text;
 
 namespace ProjetEasySaveCLI
 {
-    class controllerSupprBackupJob
+    class controllerDeleteBackupJob
     {
         private modelBackupJob menu = new modelBackupJob();
-        private viewSupprBackupJob viewMenu = new viewSupprBackupJob();
+        private viewDeleteBackupJob viewMenu = new viewDeleteBackupJob();
 
-        public controllerSupprBackupJob()
+        public controllerDeleteBackupJob()
         {
-            viewMenu.display(menu.MenuSuppr());
+            viewMenu.display(menu.MenuDelete());
             while (true)
             {
                 string userchoice = Console.ReadLine();

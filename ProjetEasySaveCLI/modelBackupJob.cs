@@ -20,36 +20,36 @@ namespace ProjetEasySaveCLI
         public string GetName()
         {
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
-            string NAME = $"{langue.Name}";
-            return NAME;
+            string MENU_NAME = $"{langue.Name}";
+            return MENU_NAME;
         }
         
         public string GetSource()
         {
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
-            string SOURCE = $"{langue.Source}";
-            return SOURCE;
+            string MENU_SOURCE = $"{langue.Source}";
+            return MENU_SOURCE;
         }
 
         public string GetDestination()
         {
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
-            string DESTINATION = $"{langue.Destination}";
-            return DESTINATION;
+            string MENU_DESTINATION = $"{langue.Destination}";
+            return MENU_DESTINATION;
         }
 
         public string GetTypeBackUp()
         {
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
-            string TYPE_BACKUP = $"{langue.Type_Backup}";
-            return TYPE_BACKUP;
+            string MENU_TYPE_BACKUP = $"{langue.Type_Backup}";
+            return MENU_TYPE_BACKUP;
         }
         
         public string GetConfirmation()
         {
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
-            string CONFIRMATION = $"{langue.Confirmation}";
-            return CONFIRMATION;
+            string MENU_CONFIRMATION = $"{langue.Confirmation}";
+            return MENU_CONFIRMATION;
         }
 
         public string GetErrorNB()
@@ -73,7 +73,7 @@ namespace ProjetEasySaveCLI
             return MENU_MODIFF;
         }
 
-        public string MenuSuppr()
+        public string MenuDelete()
         {
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
             string MENU_SUPPR = $"{langue.MenuSuppr}";

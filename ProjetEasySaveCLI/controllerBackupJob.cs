@@ -41,12 +41,12 @@ namespace ProjetEasySaveCLI
                         break;
                     case "3":
                         Console.Clear();
-                        controllerModiffBackupJob modiffmenu = new controllerModiffBackupJob();
+                        controllerModifBackupJob modiffmenu = new controllerModifBackupJob();
 
                         break;
                     case "4":
                         Console.Clear();
-                        controllerSupprBackupJob supprmenu = new controllerSupprBackupJob();
+                        controllerDeleteBackupJob supprmenu = new controllerDeleteBackupJob();
 
                         break;
                     case "5":

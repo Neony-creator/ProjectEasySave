@@ -20,11 +20,11 @@ namespace ProjetEasySaveCLI
         private string confirmation;*/
         public controllerLanguages()
         {
-            menuPrincipale();
+            menuLanguage();
 
         }
 
-        public void menuPrincipale()
+        public void menuLanguage()
         {
             viewMenu.display(menu.GetFirstMenuData());
             while (true)
@@ -39,7 +39,7 @@ namespace ProjetEasySaveCLI
                         config.AppSettings.Settings.Add("language", "en");
                         config.Save(ConfigurationSaveMode.Modified);
                         ConfigurationManager.RefreshSection("appSettings");
-                        chargerLangue();
+                        loadLanguage();
 
                         break;
                     case "2":
@@ -49,7 +49,7 @@ namespace ProjetEasySaveCLI
                         config.AppSettings.Settings.Add("language", "fr");
                         config.Save(ConfigurationSaveMode.Modified);
                         ConfigurationManager.RefreshSection("appSettings");
-                        chargerLangue();
+                        loadLanguage();
 
 
                         break;
@@ -67,7 +67,7 @@ namespace ProjetEasySaveCLI
             }
         }
 
-        public void chargerLangue()
+        public void loadLanguage()
         {
             controllerLanguages language = new controllerLanguages();
         }
