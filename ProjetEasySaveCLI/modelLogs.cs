@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace ProjetEasySaveCLI
 {
-    class modelLogs : modelMain
+    class modelLogs : modelMain //Herite de modelMain
     {
         public string GetFirstMenuData()
         {

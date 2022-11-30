@@ -10,11 +10,6 @@ namespace ProjetEasySaveCLI
         private modelLogs menu = new modelLogs();
         private viewLogs viewMenu = new viewLogs();
         
-        /*private string name;
-        private string source;
-        private string destination;
-        private string typeOfBackUp;
-        private string confirmation;*/
         public controllerLogs()
         {
             viewMenu.display(menu.GetFirstMenuData());

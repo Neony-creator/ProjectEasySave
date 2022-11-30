@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace ProjetEasySaveCLI
 {
-    class modelLanguages : modelMain
+    class modelLanguages : modelMain ////Herite de modelMain
     {
         /*private const string FIRST_MENU_FR = "Quelle langue souhaitez vous appliquer ?\n" +
             "Choisissez une des options (1,2,3):\n" +
