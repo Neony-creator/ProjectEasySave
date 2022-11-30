@@ -68,6 +68,7 @@ namespace ProjetEasySaveCLI
         {
             while (true)
             {
+                /*affichage des différents menus*/
                 model.affiche();
                 viewMenu.display(model.GetName());
                 name = Console.ReadLine();

@@ -19,8 +19,8 @@
   "Return": "6-Retour\n",
   "ErrorNB": "Il y a deja 5 sauvegarde veulliez en supprimer une:\n",
   "MenuSuppr": "Choisissez la sauvegarde que vous souhaitez supprimer (1, 2, 3, 4, 5):\n",
-  "MenuModif2": "Choisissez le parametre que vous souhaitez modiffier (1, 2, 3, 4, 5):\n1-Name\n2-Source\n3-Destination\n4-Type Backup\n5-Retour\n",
-  "ValidCreateBackup": "La sauvegarde a bien été crée !",
+  "MenuModif2": "Choisissez le parametre que vous souhaitez modiffier (1, 2, 3, 4, 5):\n1-Nom\n2-Source\n3-Destination\n4-Type Sauvegarde\n5-Retour\n",
+  "ValidCreateBackup": "La sauvegarde a bien ete cree !",
   "ErrorCreateBackup": "Un probleme est survenu veilliez reessayer",
   "MenuModif1": "Choisissez la sauvegarde à modifier"
 }
