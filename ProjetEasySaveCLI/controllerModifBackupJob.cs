@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Configuration;
 
 namespace ProjetEasySaveCLI
 {
@@ -9,6 +10,7 @@ namespace ProjetEasySaveCLI
         private modelBackupJob menu = new modelBackupJob();
         private viewModifBackupJob viewMenu = new viewModifBackupJob();
 
+        string userchoice;
 
         private string name;
         private string source;
@@ -26,12 +28,21 @@ namespace ProjetEasySaveCLI
             viewMenu.display(menu.Backup4());
             viewMenu.display(menu.Backup5());
             viewMenu.display(menu.Return());
-            viewMenu.display(menu.MenuModiff());
-           
+
+            userchoice = Console.ReadLine();
+
+
+
+
+
             while (true)
             {
-                string userchoice = Console.ReadLine();
-                switch (userchoice)
+                 
+                Console.Clear();
+                viewMenu.display(menu.MenuModiff());
+                string userchoice2 = Console.ReadLine();
+
+                switch (userchoice2)
                 {
                     case "1":
                         Console.Clear();
@@ -83,18 +94,38 @@ namespace ProjetEasySaveCLI
         {
             viewMenu.display(menu.GetName());
             name = Console.ReadLine();
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings.Remove("Name" + userchoice);
+            config.AppSettings.Settings.Add("Name" + userchoice, name);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+
+
         }
 
         private void setSourceDataBackUp()
         {
             viewMenu.display(menu.GetSource());
             source = Console.ReadLine();
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings.Remove("Source" + userchoice);
+            config.AppSettings.Settings.Add("Source" + userchoice, source);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
         }
 
         private void setDestinationDataBackUp()
         {
             viewMenu.display(menu.GetDestination());
             destination = Console.ReadLine();
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings.Remove("Destination" + userchoice);
+            config.AppSettings.Settings.Add("Destination" + userchoice, destination);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
         }
 
         private void setTypeBackupDataBackUp()
@@ -104,10 +135,21 @@ namespace ProjetEasySaveCLI
             if (typeOfBackUp == "1")
             {
                 typeOfBackUp = "complete";
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings.Remove("TypeOfBackUp" + userchoice);
+                config.AppSettings.Settings.Add("TypeOfBackUp" + userchoice, typeOfBackUp);
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+                
             }
             else
             {
                 typeOfBackUp = "differential";
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings.Remove("TypeOfBackUp" + userchoice);
+                config.AppSettings.Settings.Add("TypeOfBackUp" + userchoice, typeOfBackUp);
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
             }
         }
 

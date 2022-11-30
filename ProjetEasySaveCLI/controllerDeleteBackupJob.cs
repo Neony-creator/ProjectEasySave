@@ -16,11 +16,6 @@ namespace ProjetEasySaveCLI
         {
             menu.affiche();
             viewMenu.display(menu.MenuDelete());
-            viewMenu.display(menu.Backup1());
-            viewMenu.display(menu.Backup2());
-            viewMenu.display(menu.Backup3());
-            viewMenu.display(menu.Backup4());
-            viewMenu.display(menu.Backup5());
             viewMenu.display(menu.Return());
             
 
@@ -77,6 +72,9 @@ namespace ProjetEasySaveCLI
             config.AppSettings.Settings.Remove("Source" + userchoice);
             config.AppSettings.Settings.Remove("Destination" + userchoice);
             config.AppSettings.Settings.Remove("TypeOfBackUp" + userchoice);
+            int nbbackup = menu.ScearchNbBackUp() - 1;
+            config.AppSettings.Settings.Remove("nbbackup");
+            config.AppSettings.Settings.Add("nbbackup", nbbackup.ToString());
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
 

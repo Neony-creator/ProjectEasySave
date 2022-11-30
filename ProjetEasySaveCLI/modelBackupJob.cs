@@ -367,7 +367,7 @@ namespace ProjetEasySaveCLI
         public void affiche()
         {
             Console.Clear();
-            for (int i = 0; i <= ScearchNbBackUp(); i++)
+            for (int i = 1; i <= ScearchNbBackUp(); i++)
             {
                 Console.WriteLine(i+Backup()+i+" :");
 
