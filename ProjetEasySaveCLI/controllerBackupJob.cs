@@ -8,22 +8,21 @@ namespace ProjetEasySaveCLI
 {
     class controllerBackupJob
     {
-        private modelBackupJob menu = new modelBackupJob();
+        private modelBackupJob model = new modelBackupJob();
         private viewBackupJob viewMenu = new viewBackupJob();
         private string name;
         private string source;
         private string destination;
         private string typeOfBackUp;
         private string confirmation;
-        DateTime horodate;
 
-        static string SnbBackUp = ConfigurationManager.AppSettings["nbBackUp"];
-        int nombreSauvegarde = convertSetNbBack();
+
+
         Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
         public controllerBackupJob()
         {
-            viewMenu.display(menu.GetFirstMenuData());
+            viewMenu.display(model.GetFirstMenuData());
             while (true)
             {
                 string userchoice = Console.ReadLine();
@@ -38,8 +37,7 @@ namespace ProjetEasySaveCLI
                         Console.Clear();
                         verifyNbBackUp();
                         setCreationDataBackUp();
-                        viewMenu.display(menu.ValidateCreate());
-
+                        viewMenu.display(model.ValidateCreate());
                         break;
                     case "3":
                         Console.Clear();
@@ -57,7 +55,7 @@ namespace ProjetEasySaveCLI
                         break;
 
                     default:
-                        viewMenu.display(menu.GetError());
+                        viewMenu.display(model.GetError());
 
                         break;
                 }
@@ -67,70 +65,100 @@ namespace ProjetEasySaveCLI
 
         private void setCreationDataBackUp()
         {
-            while(true)
+            while (true)
             {
-                viewMenu.display(menu.GetName());
+                affiche();
+                viewMenu.display(model.GetName());
                 name = Console.ReadLine();
 
-                viewMenu.display(menu.GetSource());
+
+                viewMenu.display(model.GetSource());
                 source = Console.ReadLine();
 
-                viewMenu.display(menu.GetDestination());
+                viewMenu.display(model.GetDestination());
                 destination = Console.ReadLine();
 
-                viewMenu.display(menu.GetConfirmation());
+                viewMenu.display(model.GetConfirmation());
                 confirmation = Console.ReadLine();
 
                 if (confirmation == "y")
-                {                                 
-                    
-                    viewMenu.display(menu.GetTypeBackUp());
+                {
+
+                    viewMenu.display(model.GetTypeBackUp());
                     typeOfBackUp = Console.ReadLine();
                     if (typeOfBackUp == "1")
                     {
-                        typeOfBackUp = "complete";                        
+                        typeOfBackUp = "complete";
+                        model.completeFile(source, destination);
+                        model.completeDirectory(source, destination);
+                        SetConfManager();
+                        controllerMain mainmenu = new controllerMain();
+                        Console.Clear();
+
                     }
                     else
                     {
                         typeOfBackUp = "differential";
+                        model.differentialFile(source, destination);
+                        model.differentialDirectory(source, destination);
+                        SetConfManager();
+                        controllerMain mainmenu = new controllerMain();
+                        Console.Clear();
                     }
 
                 }
+                Console.Clear();
 
 
             }
 
         }
 
-        
 
-
-
-            public void verifyNbBackUp ()
-        {            
-            if(ConfigurationManager.AppSettings["nbBackUp"] == "5")
-            { viewMenu.display(menu.GetErrorNB());
-               /*setSupprDataBackUp();*/
-            }
-        }
-
-        
-
-        static public int convertSetNbBack ()
+        void SetConfManager()
         {
-            int result=0;
-            try
+            int nbBackUp = model.ScearchNbBackUp() + 1;
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings.Add("Name" + nbBackUp, name);
+            config.AppSettings.Settings.Add("Source" + nbBackUp, source);
+            config.AppSettings.Settings.Add("Destination" + nbBackUp, destination);
+            config.AppSettings.Settings.Add("TypeOfBackUp" + nbBackUp, typeOfBackUp);
+            config.AppSettings.Settings.Remove("nbbackup");
+            config.AppSettings.Settings.Add("nbbackup", nbBackUp.ToString());
+
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            affiche();
+        }
+        void affiche()
+        {
+            Console.Clear();
+            for (int i = 1; i <= model.ScearchNbBackUp(); i++)
             {
-                result= int.Parse(SnbBackUp);
-                return result;
+
+                Console.WriteLine(ConfigurationManager.AppSettings["Name" + i]);
+                Console.WriteLine(ConfigurationManager.AppSettings["Source" + i]);
+                Console.WriteLine(ConfigurationManager.AppSettings["Destination" + i]);
+                Console.WriteLine(ConfigurationManager.AppSettings["TypeOfBackUp" + i]);
+                Console.ReadLine();
+
             }
-            catch( Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            return result;
         }
 
-        
+
+        public void verifyNbBackUp()
+        {
+            if (ConfigurationManager.AppSettings["nbBackUp"] == "5")
+            {
+                viewMenu.display(model.GetErrorNB());
+                /*controllerDeleteBackupJob er = new controllerDeleteBackupJob();*/
+            }
+        }
+
+
+
+
+
+
     }
 }

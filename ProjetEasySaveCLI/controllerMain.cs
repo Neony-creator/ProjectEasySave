@@ -26,6 +26,7 @@ namespace ProjetEasySaveCLI
 
                     case "2":
                         Console.Clear();
+                        Console.WriteLine(menu.ScearchNbBackUp());
                         controllerLogs logs = new controllerLogs();
                         break;
 

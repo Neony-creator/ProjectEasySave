@@ -27,9 +27,26 @@ namespace ProjetEasySaveCLI
             return ERROR;
         }
 
+        public int ScearchNbBackUp()
+        {
+            ConfigurationManager.RefreshSection("appSettings");
+            string nbBackUp = ConfigurationManager.AppSettings["nbbackup"];
+            int result = 0;
+            try
+            {
+                result = int.Parse(nbBackUp);
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return result;
+        }
+
         public string testLanguage()
         {
-            string result = "";
+            string result = File.ReadAllText(@"./text_en.json"); ;
             switch (configLanguage)
             {
                 case "fr":

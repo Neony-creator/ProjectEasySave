@@ -141,6 +141,213 @@ namespace ProjetEasySaveCLI
             return ERROR_CREATE;
         }
 
+        public void completeDirectory(string source, string destination)
+        {
+            try
+            {
+                string[] DirectoryList = Directory.GetDirectories(source);
+
+
+                // Copy picture files.
+                foreach (string Dir in DirectoryList)
+                {
+                    // Remove path from the file name.
+                    string DName = Dir;
+                    string DdestName = Dir.Substring(source.Length);
+                    string destinationUpdate = destination + DdestName;
+                    Console.WriteLine(Dir);
+                    Console.WriteLine(DdestName);
+                    Console.WriteLine(destinationUpdate);
+                    Directory.CreateDirectory(destinationUpdate);
+                    completeFile(Dir, destinationUpdate);
+                    completeDirectory(Dir, destinationUpdate);
+
+                    // Use the Path.Combine method to safely append the file name to the path.
+                    // Will overwrite if the destination file already exists.
+
+                }
+
+
+            }
+
+            catch (DirectoryNotFoundException dirNotFound)
+            {
+                Console.WriteLine(dirNotFound.Message);
+            }
+
+
+        }
+
+        public void completeFile(string source, string destination)
+        {
+            try
+            {
+                Directory.CreateDirectory(destination);
+                string[] FileList = Directory.GetFiles(source);
+
+
+
+                // Copy picture files.
+                foreach (string file in FileList)
+                {
+                    // Remove path from the file name.
+                    string fName = file.Substring(source.Length + 1);
+                    int file1byte;
+                    int file2byte;
+
+
+                    // Use the Path.Combine method to safely append the file name to the path.
+                    // Will overwrite if the destination file already exists.
+
+                    File.Copy(Path.Combine(source, fName), Path.Combine(destination, fName), true);
+
+                    using (FileStream FileS = new FileStream(Path.Combine(source, fName), FileMode.Open))
+                    {
+                        using (FileStream FileD = new FileStream(Path.Combine(destination, fName), FileMode.Open))
+                        {
+                            do
+                            {
+                                file1byte = FileS.ReadByte();
+                                file2byte = FileD.ReadByte();
+                            }
+                            while ((file1byte == file2byte) && (file1byte != -1));
+                            FileS.Close();
+                            FileD.Close();
+                            if ((file1byte - file2byte) == 0)
+                            {
+                                Console.WriteLine("c'est un succes");
+                            }
+                            else
+                            {
+                                Console.WriteLine("errorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+                            }
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+            catch (DirectoryNotFoundException dirNotFound)
+            {
+                Console.WriteLine(dirNotFound.Message);
+            }
+
+
+
+        }
+
+        public void differentialDirectory(string source, string destination)
+        {
+            try
+            {
+                string[] DirectoryList = Directory.GetDirectories(source);
+
+
+                // Copy picture files.
+                foreach (string Dir in DirectoryList)
+                {
+                    // Remove path from the file name.
+                    string DName = Dir;
+                    string DdestName = Dir.Substring(source.Length);
+                    string destinationUpdate = destination + DdestName;
+                    Console.WriteLine(Dir);
+                    Console.WriteLine(DdestName);
+                    Console.WriteLine(destinationUpdate);
+                    Directory.CreateDirectory(destinationUpdate);
+                    differentialFile(Dir, destinationUpdate);
+                    differentialDirectory(Dir, destinationUpdate);
+
+                    // Use the Path.Combine method to safely append the file name to the path.
+                    // Will overwrite if the destination file already exists.
+
+                }
+
+
+            }
+
+            catch (DirectoryNotFoundException dirNotFound)
+            {
+                Console.WriteLine(dirNotFound.Message);
+            }
+
+
+        }
+
+        public void differentialFile(string source, string destination)
+        {
+            try
+            {
+                Directory.CreateDirectory(destination);
+                string[] FileList = Directory.GetFiles(source);
+
+
+
+
+                // Copy picture files.
+                foreach (string file in FileList)
+                {
+                    try
+                    {
+                        // Remove path from the file name.
+                        string fName = file.Substring(source.Length + 1);
+                        int file1byte;
+                        int file2byte;
+
+
+                        // Use the Path.Combine method to safely append the file name to the path.
+                        // Will overwrite if the destination file already exists.
+
+
+                        using (FileStream FileS = new FileStream(Path.Combine(source, fName), FileMode.Open))
+                        {
+                            using (FileStream FileD = new FileStream(Path.Combine(destination, fName), FileMode.Open))
+                            {
+                                do
+                                {
+                                    file1byte = FileS.ReadByte();
+                                    file2byte = FileD.ReadByte();
+                                }
+                                while ((file1byte == file2byte) && (file1byte != -1));
+                                FileS.Close();
+                                FileD.Close();
+                                if ((file1byte - file2byte) == 0)
+                                {
+                                    Console.WriteLine("c'est un succes");
+                                }
+                                else
+                                {
+                                    File.Copy(Path.Combine(source, fName), Path.Combine(destination, fName), true);
+                                    Console.WriteLine("Le fichier ne correspond pas");
+                                }
+                            }
+
+                        }
+
+                    }
+
+                    catch (FileNotFoundException dirNotFound)
+                    {
+                        string fName = file.Substring(source.Length + 1);
+                        File.Copy(Path.Combine(source, fName), Path.Combine(destination, fName), true);
+                        Console.WriteLine(dirNotFound.Message);
+                        Console.WriteLine("Lefichier n'existe pas");
+                    }
+                }
+
+
+
+            }
+
+            catch (DirectoryNotFoundException dirNotFound)
+            {
+                Console.WriteLine(dirNotFound.Message);
+            }
+
+
+        }
 
     }
 }
