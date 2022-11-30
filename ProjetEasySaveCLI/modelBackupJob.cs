@@ -125,8 +125,14 @@ namespace ProjetEasySaveCLI
         public string MenuModiff()
         {
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
-            string MENU_MODIFF = $"{langue.MenuModiff}";
+            string MENU_MODIFF = $"{langue.MenuModif2}";
             return MENU_MODIFF;
+        }
+        public string MenuModif1()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string MENU_MODIF1 = $"{langue.MenuModif1}";
+            return MENU_MODIF1;
         }
 
         public string MenuDelete()

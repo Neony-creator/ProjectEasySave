@@ -19,7 +19,7 @@ namespace ProjetEasySaveCLI
             public string MenuLogs { get; set; }
             public string MenuExecute { get; set; }
             public string ErrorNB { get; set; }
-            public string MenuModiff { get; set; }
+            public string MenuModif2 { get; set; }
             public string MenuSuppr { get; set; }
             public string ValidCreateBackup { get; set; }
             public string ErrorCreateBackup { get; set; }
@@ -30,6 +30,7 @@ namespace ProjetEasySaveCLI
             public string Backup4 { get; set; }
             public string Backup5 { get; set; }
             public string Return { get; set; }
+            public string MenuModif1 { get; set; }
 
     }
 }
