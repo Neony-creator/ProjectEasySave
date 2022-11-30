@@ -77,7 +77,8 @@ namespace ProjetEasySaveCLI
             config.AppSettings.Settings.Add("nbbackup", nbbackup.ToString()); //Permet d'ajouter un paramètre dans notre fichier config
             config.Save(ConfigurationSaveMode.Modified); //Permet de sauvegarder notre fichier config
             ConfigurationManager.RefreshSection("appSettings"); //Permet d'actualiser notre fichier config
-
+            Console.Clear();
+            controllerMain mainmenu = new controllerMain();
         }
 
         

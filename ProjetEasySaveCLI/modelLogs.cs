@@ -79,10 +79,16 @@ namespace ProjetEasySaveCLI
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
             List<stateLog> listJsonState = new List<stateLog>();
-            if (File.Exists("StateLog.json"))
+            try
             {
-                var FileJsonRead = File.ReadAllText(@"StateLog.json");
+                if (File.Exists("StateLog.json"))
+            {
+              
+                    var FileJsonRead = File.ReadAllText(@"StateLog.json");
+                
                 var objectState = JsonSerializer.Deserialize<List<stateLog>>(FileJsonRead);
+
+
                 int nb = objectState.Count;
                 
                 foreach (var Jss in objectState)
@@ -107,7 +113,11 @@ namespace ProjetEasySaveCLI
             var json = JsonSerializer.Serialize(listJsonState, options: new() { WriteIndented = true });
             File.AppendAllText(@"StateLog.json", json);
             Console.WriteLine(json);
-
+            }
+                catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
     }

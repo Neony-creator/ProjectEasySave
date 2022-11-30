@@ -22,11 +22,6 @@ namespace ProjetEasySaveCLI
         {
             menu.affiche();
             viewMenu.display(menu.MenuModif1());
-            viewMenu.display(menu.Backup1());
-            viewMenu.display(menu.Backup2());
-            viewMenu.display(menu.Backup3());
-            viewMenu.display(menu.Backup4());
-            viewMenu.display(menu.Backup5());
             viewMenu.display(menu.Return());
 
             userchoice = Console.ReadLine();
