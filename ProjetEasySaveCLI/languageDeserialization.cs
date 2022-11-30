@@ -21,5 +21,14 @@ namespace ProjetEasySaveCLI
             public string ErrorNB { get; set; }
             public string MenuModiff { get; set; }
             public string MenuSuppr { get; set; }
+            public string ValidCreateBackup { get; set; }
+            public string ErrorCreateBackup { get; set; }
+            public string Backup1 { get; set; }
+            public string Backup2 { get; set; }
+            public string Backup3 { get; set; }
+            public string Backup4 { get; set; }
+            public string Backup5 { get; set; }
+            public string Return { get; set; }
+
     }
 }

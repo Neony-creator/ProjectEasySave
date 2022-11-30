@@ -38,6 +38,8 @@ namespace ProjetEasySaveCLI
                         Console.Clear();
                         verifyNbBackUp();
                         setCreationDataBackUp();
+                        viewMenu.display(menu.ValidateCreate());
+
                         break;
                     case "3":
                         Console.Clear();

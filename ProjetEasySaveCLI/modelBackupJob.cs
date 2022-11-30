@@ -66,6 +66,53 @@ namespace ProjetEasySaveCLI
             return MENU_EXECUTE;
         }
 
+        public string Backup1()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string BACKUP1 = $"{langue.Backup1}";
+            return BACKUP1;
+        }
+
+        public string Backup2()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string BACKUP2 = $"{langue.Backup2}";
+            return BACKUP2;
+        }
+
+        public string Backup3()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string BACKUP3 = $"{langue.Backup3}";
+            return BACKUP3;
+        }
+
+        public string Backup4()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string BACKUP4 = $"{langue.Backup4}";
+            return BACKUP4;
+        }
+
+        public string Backup5()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string BACKUP5 = $"{langue.Backup5}";
+            return BACKUP5;
+        }
+
+
+        public string Return()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string BACK = $"{langue.Return}";
+            return BACK;
+        }
+
+
+
+
+
         public string MenuModiff()
         {
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
@@ -78,6 +125,20 @@ namespace ProjetEasySaveCLI
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
             string MENU_SUPPR = $"{langue.MenuSuppr}";
             return MENU_SUPPR;
+        }
+
+        public string ValidateCreate()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string VALIDATION = $"{langue.ValidCreateBackup}";
+            return VALIDATION;
+        }
+
+        public string ErrorCreate()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string ERROR_CREATE = $"{langue.ErrorCreateBackup}";
+            return ERROR_CREATE;
         }
 
 
