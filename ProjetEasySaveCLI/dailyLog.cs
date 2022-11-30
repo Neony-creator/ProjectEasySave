@@ -6,11 +6,13 @@ namespace ProjetEasySaveCLI
 {
     class dailyLog
     {
-        public string Horodatage { get; set; }
-        public string NomTravaux { get; set; }
-        public string CheminSource { get; set; }
-        public string CheminDestination { get; set; }
-        public string taille { get; set; }
-        public string tempsTrans { get; set; }
+        public string backUpName { get; set; }
+        public string sourcePathFile { get; set; }
+        public string destinationPathFile { get; set; }        
+        public long size { get; set; }
+        public double timetransfert { get; set; }
+        public string timestamp { get; set; }        
+        
+        
     }
 }

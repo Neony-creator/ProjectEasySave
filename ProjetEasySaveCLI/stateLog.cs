@@ -6,15 +6,15 @@ namespace ProjetEasySaveCLI
 {
     class stateLog
     {
-        public string NomTravaux { get; set; }
-        public string Horodatage { get; set; }        
-        public string Etat { get; set; }        
-        public string NombreTotalFichier { get; set; }
-        public string tailleTotal { get; set; }
-        public string NombreFichierRestant { get; set; }
-        public string tailleRestante { get; set; }
-        public string CheminSource { get; set; }
-        public string CheminDestination { get; set; }        
-       
+        public string backUpName { get; set; }
+        public string timeStamp { get; set; }
+        public string state { get; set; }
+        public int totalNumberOfFile { get; set; }
+        public long totalSize { get; set; }
+        public int totalNumberOfFileRemaining { get; set; }
+        public long sizeRemaining { get; set; }
+        public string sourcePath { get; set; }
+        public string destinationPath { get; set; }
+
     }
 }

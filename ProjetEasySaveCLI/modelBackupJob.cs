@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Text.Json;
+using System.Diagnostics;
 
 namespace ProjetEasySaveCLI
 {
+    
     class modelBackupJob : modelMain
     {
-
+        modelLogs log = new modelLogs();
 
         public string GetFirstMenuData()
         {
@@ -141,17 +143,17 @@ namespace ProjetEasySaveCLI
             return ERROR_CREATE;
         }
 
-        public void completeDirectory(string source, string destination)
+        public void completeDirectory(string source, string destination, string name)
         {
             try
             {
                 string[] DirectoryList = Directory.GetDirectories(source);
 
 
-                // Copy picture files.
+
                 foreach (string Dir in DirectoryList)
                 {
-                    // Remove path from the file name.
+                   
                     string DName = Dir;
                     string DdestName = Dir.Substring(source.Length);
                     string destinationUpdate = destination + DdestName;
@@ -159,11 +161,10 @@ namespace ProjetEasySaveCLI
                     Console.WriteLine(DdestName);
                     Console.WriteLine(destinationUpdate);
                     Directory.CreateDirectory(destinationUpdate);
-                    completeFile(Dir, destinationUpdate);
-                    completeDirectory(Dir, destinationUpdate);
+                    completeFile(Dir, destinationUpdate,name);
+                    completeDirectory(Dir, destinationUpdate,name);
 
-                    // Use the Path.Combine method to safely append the file name to the path.
-                    // Will overwrite if the destination file already exists.
+                 
 
                 }
 
@@ -178,29 +179,32 @@ namespace ProjetEasySaveCLI
 
         }
 
-        public void completeFile(string source, string destination)
+        public void completeFile(string source, string destination, string name)
         {
             try
             {
+                
                 Directory.CreateDirectory(destination);
                 string[] FileList = Directory.GetFiles(source);
 
-
-
-                // Copy picture files.
+                double timeTransfert;
+                long size;
+                
                 foreach (string file in FileList)
                 {
-                    // Remove path from the file name.
+                    FileInfo infofi = new FileInfo(file);
+                    size = infofi.Length;
                     string fName = file.Substring(source.Length + 1);
                     int file1byte;
                     int file2byte;
 
+                    
 
-                    // Use the Path.Combine method to safely append the file name to the path.
-                    // Will overwrite if the destination file already exists.
-
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
                     File.Copy(Path.Combine(source, fName), Path.Combine(destination, fName), true);
-
+                    sw.Stop();
+                    timeTransfert= sw.Elapsed.Milliseconds;                    
                     using (FileStream FileS = new FileStream(Path.Combine(source, fName), FileMode.Open))
                     {
                         using (FileStream FileD = new FileStream(Path.Combine(destination, fName), FileMode.Open))
@@ -215,11 +219,13 @@ namespace ProjetEasySaveCLI
                             FileD.Close();
                             if ((file1byte - file2byte) == 0)
                             {
+                                log.CreateJsonDaily(name,source,destination,size,timeTransfert);
                                 Console.WriteLine("c'est un succes");
                             }
                             else
                             {
-                                Console.WriteLine("errorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+                                log.CreateJsonDaily(name, source, destination, size, (timeTransfert)*-1);
+                                Console.WriteLine("error de copy");
                             }
                         }
 
@@ -239,17 +245,17 @@ namespace ProjetEasySaveCLI
 
         }
 
-        public void differentialDirectory(string source, string destination)
+        public void differentialDirectory(string source, string destination, string name)
         {
             try
             {
                 string[] DirectoryList = Directory.GetDirectories(source);
 
 
-                // Copy picture files.
+                
                 foreach (string Dir in DirectoryList)
                 {
-                    // Remove path from the file name.
+                    
                     string DName = Dir;
                     string DdestName = Dir.Substring(source.Length);
                     string destinationUpdate = destination + DdestName;
@@ -257,11 +263,9 @@ namespace ProjetEasySaveCLI
                     Console.WriteLine(DdestName);
                     Console.WriteLine(destinationUpdate);
                     Directory.CreateDirectory(destinationUpdate);
-                    differentialFile(Dir, destinationUpdate);
-                    differentialDirectory(Dir, destinationUpdate);
+                    differentialFile(Dir, destinationUpdate, name);
+                    differentialDirectory(Dir, destinationUpdate, name);
 
-                    // Use the Path.Combine method to safely append the file name to the path.
-                    // Will overwrite if the destination file already exists.
 
                 }
 
@@ -276,29 +280,28 @@ namespace ProjetEasySaveCLI
 
         }
 
-        public void differentialFile(string source, string destination)
+        public void differentialFile(string source, string destination, string name)
         {
             try
             {
                 Directory.CreateDirectory(destination);
                 string[] FileList = Directory.GetFiles(source);
 
+                double timeTransfert;
+                long size;
+                Stopwatch sw = new Stopwatch();
 
-
-
-                // Copy picture files.
                 foreach (string file in FileList)
                 {
                     try
                     {
-                        // Remove path from the file name.
+                        FileInfo infofi = new FileInfo(file);
+                        size = infofi.Length;
                         string fName = file.Substring(source.Length + 1);
                         int file1byte;
-                        int file2byte;
+                        int file2byte;           
 
 
-                        // Use the Path.Combine method to safely append the file name to the path.
-                        // Will overwrite if the destination file already exists.
 
 
                         using (FileStream FileS = new FileStream(Path.Combine(source, fName), FileMode.Open))
@@ -319,8 +322,14 @@ namespace ProjetEasySaveCLI
                                 }
                                 else
                                 {
+                                    
+                                    sw.Start();
                                     File.Copy(Path.Combine(source, fName), Path.Combine(destination, fName), true);
+                                    sw.Stop();
+                                    timeTransfert = sw.Elapsed.Milliseconds;                                    
+                                    log.CreateJsonDaily(name, source, destination, size, timeTransfert);
                                     Console.WriteLine("Le fichier ne correspond pas");
+
                                 }
                             }
 
@@ -331,9 +340,15 @@ namespace ProjetEasySaveCLI
                     catch (FileNotFoundException dirNotFound)
                     {
                         string fName = file.Substring(source.Length + 1);
+                        FileInfo infofi = new FileInfo(file);
+                        size = infofi.Length;                        
+                        sw.Start();
                         File.Copy(Path.Combine(source, fName), Path.Combine(destination, fName), true);
+                        sw.Stop();
+                        timeTransfert = sw.Elapsed.Milliseconds;                        
+                        log.CreateJsonDaily(name, source, destination, size, timeTransfert);
                         Console.WriteLine(dirNotFound.Message);
-                        Console.WriteLine("Lefichier n'existe pas");
+                        Console.WriteLine("Le fichier n'existe pas");
                     }
                 }
 

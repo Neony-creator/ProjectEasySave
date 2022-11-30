@@ -89,8 +89,8 @@ namespace ProjetEasySaveCLI
                     if (typeOfBackUp == "1")
                     {
                         typeOfBackUp = "complete";
-                        model.completeFile(source, destination);
-                        model.completeDirectory(source, destination);
+                        model.completeFile(source, destination, name);
+                        model.completeDirectory(source, destination, name);
                         SetConfManager();
                         controllerMain mainmenu = new controllerMain();
                         Console.Clear();
@@ -99,8 +99,8 @@ namespace ProjetEasySaveCLI
                     else
                     {
                         typeOfBackUp = "differential";
-                        model.differentialFile(source, destination);
-                        model.differentialDirectory(source, destination);
+                        model.differentialFile(source, destination, name);
+                        model.differentialDirectory(source, destination, name);
                         SetConfManager();
                         controllerMain mainmenu = new controllerMain();
                         Console.Clear();
@@ -148,9 +148,11 @@ namespace ProjetEasySaveCLI
 
         public void verifyNbBackUp()
         {
-            if (ConfigurationManager.AppSettings["nbBackUp"] == "5")
+            if (model.ScearchNbBackUp() >= 5)
             {
                 viewMenu.display(model.GetErrorNB());
+                Console.ReadLine();
+                controllerMain mainmenu = new controllerMain();
                 /*controllerDeleteBackupJob er = new controllerDeleteBackupJob();*/
             }
         }
