@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Text.Json;
+using System.Configuration;
 
 namespace ProjetEasySaveCLI
 {
@@ -65,6 +66,14 @@ namespace ProjetEasySaveCLI
             string MENU_EXECUTE = $"{langue.MenuExecute}";
             return MENU_EXECUTE;
         }
+
+        public string Backup()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string BACKUP = $"{langue.Backup}";
+            return BACKUP;
+        }
+
 
         public string Backup1()
         {
@@ -347,6 +356,22 @@ namespace ProjetEasySaveCLI
             }
 
 
+        }
+
+        public void affiche()
+        {
+            Console.Clear();
+            for (int i = 0; i <= ScearchNbBackUp(); i++)
+            {
+                Console.WriteLine(i+Backup()+i+" :");
+
+                Console.WriteLine(ConfigurationManager.AppSettings["Name" + i]);
+                Console.WriteLine(ConfigurationManager.AppSettings["Source" + i]);
+                Console.WriteLine(ConfigurationManager.AppSettings["Destination" + i]);
+                Console.WriteLine(ConfigurationManager.AppSettings["TypeOfBackUp" + i]);
+
+
+            }
         }
 
     }

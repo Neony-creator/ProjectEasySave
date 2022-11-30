@@ -23,6 +23,7 @@ namespace ProjetEasySaveCLI
             public string MenuSuppr { get; set; }
             public string ValidCreateBackup { get; set; }
             public string ErrorCreateBackup { get; set; }
+            public string Backup { get; set; }
             public string Backup1 { get; set; }
             public string Backup2 { get; set; }
             public string Backup3 { get; set; }

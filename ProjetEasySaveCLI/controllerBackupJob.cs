@@ -10,6 +10,7 @@ namespace ProjetEasySaveCLI
     {
         private modelBackupJob model = new modelBackupJob();
         private viewBackupJob viewMenu = new viewBackupJob();
+
         private string name;
         private string source;
         private string destination;
@@ -67,7 +68,7 @@ namespace ProjetEasySaveCLI
         {
             while (true)
             {
-                affiche();
+                model.affiche();
                 viewMenu.display(model.GetName());
                 name = Console.ReadLine();
 
@@ -128,22 +129,9 @@ namespace ProjetEasySaveCLI
 
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
-            affiche();
+            model.affiche();
         }
-        void affiche()
-        {
-            Console.Clear();
-            for (int i = 1; i <= model.ScearchNbBackUp(); i++)
-            {
-
-                Console.WriteLine(ConfigurationManager.AppSettings["Name" + i]);
-                Console.WriteLine(ConfigurationManager.AppSettings["Source" + i]);
-                Console.WriteLine(ConfigurationManager.AppSettings["Destination" + i]);
-                Console.WriteLine(ConfigurationManager.AppSettings["TypeOfBackUp" + i]);
-                Console.ReadLine();
-
-            }
-        }
+       
 
 
         public void verifyNbBackUp()
