@@ -17,6 +17,9 @@
   "Backup5": "5-Backup 5 :\n",
   "Return": "6-Return\n",
   "ErrorNB": "There are already 5 saves want to delete one\n",
-  "MenuSuppr": "Choose the bakcup you wish to delete (1, 2, 3, 4, 5) :\n1-Backup 1 :\n2-Backup 2 :\n3-Backup 3 :\n4-Backup 4 :\n5-Backup 5 :\n6-Return\n",
-  "MenuModiff": "Choisissez le parametre que vous souhaitez modiffier (1, 2, 3, 4, 5):\n1-Name\n2-Source\n3-Destination\n4-Type Backup\n5-Retour\n"
+  "MenuSuppr": "Choose the bakcup you wish to delete (1, 2, 3, 4, 5):\n",
+  "MenuModif2": "Choose the parametre to modify (1, 2, 3, 4, 5):\n1-Name\n2-Source\n3-Destination\n4-Type Backup\n5-Return\n",
+  "ValidCreateBackup": "The backup has been created!",
+  "ErrorCreateBackup": "A problem has occured please try again",
+  "MenuModif1": "Choose the backup to modify"
 }
