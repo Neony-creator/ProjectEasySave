@@ -73,10 +73,9 @@ namespace ProjetEasySaveCLI
                 viewMenu.display(model.GetName());
                 name = Console.ReadLine();
 
-
                 viewMenu.display(model.GetSource());
                 source = Console.ReadLine();
-
+                model.countNbTotalFile(source);
                 viewMenu.display(model.GetDestination());
                 destination = Console.ReadLine();
 

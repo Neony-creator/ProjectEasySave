@@ -9,7 +9,7 @@ namespace ProjetEasySaveCLI
         public string backUpName { get; set; }
         public string timeStamp { get; set; }
         public string state { get; set; }
-        public int totalNumberOfFile { get; set; }
+        public string totalNumberOfFile { get; set; }
         public long totalSize { get; set; }
         public int totalNumberOfFileRemaining { get; set; }
         public long sizeRemaining { get; set; }

@@ -158,6 +158,34 @@ namespace ProjetEasySaveCLI
             return ERROR_CREATE;
         }
 
+
+        public void countNbTotalFile(string source)
+        {
+
+            int nbFile = 0;
+            try
+            {
+                nbFile = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Length;
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings.Remove("nbTotalFile");
+                config.AppSettings.Settings.Remove("nbTotalFilePerma");
+                config.AppSettings.Settings.Add("nbTotalFile", nbFile.ToString());
+                config.AppSettings.Settings.Add("nbTotalFilePerma", nbFile.ToString());
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+            } 
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
+        }
+       
+
+
+        
+     
+
         public void completeDirectory(string source, string destination, string name)
         {
             try
@@ -177,20 +205,15 @@ namespace ProjetEasySaveCLI
                     Console.WriteLine(destinationUpdate);
                     Directory.CreateDirectory(destinationUpdate);
                     completeFile(Dir, destinationUpdate,name);
-                    completeDirectory(Dir, destinationUpdate,name);
-
-                 
+                    completeDirectory(Dir, destinationUpdate,name);                 
 
                 }
-
-
             }
 
             catch (DirectoryNotFoundException dirNotFound)
             {
                 Console.WriteLine(dirNotFound.Message);
             }
-
 
         }
 
@@ -211,9 +234,7 @@ namespace ProjetEasySaveCLI
                     size = infofi.Length;
                     string fName = file.Substring(source.Length + 1);
                     int file1byte;
-                    int file2byte;
-
-                    
+                    int file2byte;                   
 
                     Stopwatch sw = new Stopwatch();
                     sw.Start();
@@ -234,21 +255,19 @@ namespace ProjetEasySaveCLI
                             FileD.Close();
                             if ((file1byte - file2byte) == 0)
                             {
+                                log.CreateJsonState(name,source,destination,size);
                                 log.CreateJsonDaily(name,source,destination,size,timeTransfert);
                                 Console.WriteLine("c'est un succes");
                             }
                             else
                             {
                                 log.CreateJsonDaily(name, source, destination, size, (timeTransfert)*-1);
+                                log.CreateJsonState(name, source, destination, size);
                                 Console.WriteLine("error de copy");
                             }
                         }
-
                     }
-
                 }
-
-
             }
 
             catch (DirectoryNotFoundException dirNotFound)
@@ -343,6 +362,7 @@ namespace ProjetEasySaveCLI
                                     sw.Stop();
                                     timeTransfert = sw.Elapsed.Milliseconds;                                    
                                     log.CreateJsonDaily(name, source, destination, size, timeTransfert);
+                                    log.CreateJsonState(name, source, destination, size);
                                     Console.WriteLine("Le fichier ne correspond pas");
 
                                 }
@@ -362,6 +382,7 @@ namespace ProjetEasySaveCLI
                         sw.Stop();
                         timeTransfert = sw.Elapsed.Milliseconds;                        
                         log.CreateJsonDaily(name, source, destination, size, timeTransfert);
+                        log.CreateJsonState(name, source, destination, size);
                         Console.WriteLine(dirNotFound.Message);
                         Console.WriteLine("Le fichier n'existe pas");
                     }

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Text.Json;
-
+using System.Configuration;
 
 namespace ProjetEasySaveCLI
 {
     class modelLogs : modelMain
     {
+        
         public string GetFirstMenuData()
         {
             languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
@@ -54,15 +55,36 @@ namespace ProjetEasySaveCLI
 
         }
 
-        public void CreateJsonState(string name, string sourceFile, string destinationFile, string state, int totalFileToCopy, long TotalFileSize, int NbFileLeftToDo , long SizeFileLeftToDo)
+        public void CreateJsonState(string name, string sourceFile, string destinationFile, long size)
         {
+            string temp;
+            temp = ConfigurationManager.AppSettings["nbTotalFile"];
+            
+           
+            string state = "Actif";
+            int nbTotalFile = 0;
+            try
+            {
+                nbTotalFile = int.Parse(temp);
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            nbTotalFile = nbTotalFile - 1;
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings.Remove("nbTotalFile");
+            config.AppSettings.Settings.Add("nbTotalFile", nbTotalFile.ToString());
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
             List<stateLog> listJsonState = new List<stateLog>();
             if (File.Exists("StateLog.json"))
             {
                 var FileJsonRead = File.ReadAllText(@"StateLog.json");
                 var objectState = JsonSerializer.Deserialize<List<stateLog>>(FileJsonRead);
                 int nb = objectState.Count;
-                ;
+                
                 foreach (var Jss in objectState)
                 {
                     listJsonState.Add(Jss);
@@ -73,10 +95,10 @@ namespace ProjetEasySaveCLI
             stateO.sourcePath = sourceFile;
             stateO.destinationPath = destinationFile;
             stateO.state = state;
-            stateO.totalNumberOfFile = totalFileToCopy;
-            stateO.totalSize = TotalFileSize;
-            stateO.totalNumberOfFileRemaining = NbFileLeftToDo;
-            stateO.sizeRemaining =SizeFileLeftToDo;
+            stateO.totalNumberOfFile = ConfigurationManager.AppSettings["nbTotalFile"];
+            stateO.totalSize = size ;
+            stateO.totalNumberOfFileRemaining = nbTotalFile ; 
+            stateO.sizeRemaining =nbTotalFile-1;
             
 
             listJsonState.Add(stateO);
