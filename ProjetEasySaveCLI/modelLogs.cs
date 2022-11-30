@@ -7,7 +7,7 @@ using System.Configuration;
 
 namespace ProjetEasySaveCLI
 {
-    class modelLogs : modelMain
+    class modelLogs : modelMain //Herite de modelMain
     {
         
         public string GetFirstMenuData()

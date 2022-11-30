@@ -90,7 +90,7 @@ namespace ProjetEasySaveCLI
         
 
 
-        private void setNameDataBackUp()
+        private void setNameDataBackUp() //Fonction qui permet d'attribuer un nom d'une sauvegarde à notre fichier config
         {
             viewMenu.display(menu.GetName());
             name = Console.ReadLine();
@@ -104,7 +104,7 @@ namespace ProjetEasySaveCLI
 
         }
 
-        private void setSourceDataBackUp()
+        private void setSourceDataBackUp() //Fonction qui permet d'attribuer une source d'une sauvegarde à notre fichier config
         {
             viewMenu.display(menu.GetSource());
             source = Console.ReadLine();
@@ -116,7 +116,7 @@ namespace ProjetEasySaveCLI
             ConfigurationManager.RefreshSection("appSettings");
         }
 
-        private void setDestinationDataBackUp()
+        private void setDestinationDataBackUp() //Fonction qui permet d'attribuer une destination d'une sauvegarde à notre fichier config
         {
             viewMenu.display(menu.GetDestination());
             destination = Console.ReadLine();
@@ -128,7 +128,7 @@ namespace ProjetEasySaveCLI
             ConfigurationManager.RefreshSection("appSettings");
         }
 
-        private void setTypeBackupDataBackUp()
+        private void setTypeBackupDataBackUp() //Fonction qui permet d'attribuer un type de backup d'une sauvegarde à notre fichier config
         {
             viewMenu.display(menu.GetTypeBackUp());
             typeOfBackUp = Console.ReadLine();
@@ -153,7 +153,7 @@ namespace ProjetEasySaveCLI
             }
         }
 
-        private void setConfirmationDataBackUp()
+        private void setConfirmationDataBackUp() //Fonction qui permet à l'utilisateur de valider s'il souhaite confirmer les informations qu'il a saisit
         {
             viewMenu.display(menu.GetConfirmation());
             confirmation = Console.ReadLine();

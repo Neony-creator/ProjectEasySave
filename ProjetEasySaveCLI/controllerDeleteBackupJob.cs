@@ -63,20 +63,20 @@ namespace ProjetEasySaveCLI
 
 
 
-        private void Delete()
+        private void Delete() //Fonction permettant la supression d'une sauvegarde existante
         {
             
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings.Remove("Name"+userchoice);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None); //Ouvre notre fichier config
+            config.AppSettings.Settings.Remove("Name"+userchoice); //Nous permet de supprimer les paramètres du fichier suprimmé par l'utilisateur de notre fichie config
             config.AppSettings.Settings.Remove("Source" + userchoice);
             config.AppSettings.Settings.Remove("Destination" + userchoice);
             config.AppSettings.Settings.Remove("TypeOfBackUp" + userchoice);
-            int nbbackup = menu.ScearchNbBackUp() - 1;
+            int nbbackup = menu.ScearchNbBackUp() - 1; //On indique dans notre fichier config qu'il y a une sauvegarde de moins
             config.AppSettings.Settings.Remove("nbbackup");
-            config.AppSettings.Settings.Add("nbbackup", nbbackup.ToString());
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
+            config.AppSettings.Settings.Add("nbbackup", nbbackup.ToString()); //Permet d'ajouter un paramètre dans notre fichier config
+            config.Save(ConfigurationSaveMode.Modified); //Permet de sauvegarder notre fichier config
+            ConfigurationManager.RefreshSection("appSettings"); //Permet d'actualiser notre fichier config
 
         }
 

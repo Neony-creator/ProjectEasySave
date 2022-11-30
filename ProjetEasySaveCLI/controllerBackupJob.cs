@@ -19,7 +19,7 @@ namespace ProjetEasySaveCLI
 
 
 
-        Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None); //On ouvre notre fichier config
 
         public controllerBackupJob()
         {
@@ -36,7 +36,7 @@ namespace ProjetEasySaveCLI
                         break;
                     case "2":
                         Console.Clear();
-                        verifyNbBackUp();
+                        verifyNbBackUp(); //On appelle la fonciton "verifyNbBackUp"
                         setCreationDataBackUp();
                         viewMenu.display(model.ValidateCreate());
                         break;
@@ -64,7 +64,7 @@ namespace ProjetEasySaveCLI
 
         }
 
-        private void setCreationDataBackUp()
+        private void setCreationDataBackUp() //Fonction permmettant la création d'une sauvegarde
         {
             while (true)
             {
@@ -116,7 +116,7 @@ namespace ProjetEasySaveCLI
         }
 
 
-        void SetConfManager()
+        void SetConfManager() //Foontion permetant l'ajout des paramètres d'une sauvegarde dans notre fichier config
         {
             int nbBackUp = model.ScearchNbBackUp() + 1;
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -134,7 +134,7 @@ namespace ProjetEasySaveCLI
        
 
 
-        public void verifyNbBackUp()
+        public void verifyNbBackUp() //Fonction vérifiant que l'utilisateur n'ai pas dépassé le nombre maximum de sauvegarde
         {
             if (model.ScearchNbBackUp() >= 5)
             {

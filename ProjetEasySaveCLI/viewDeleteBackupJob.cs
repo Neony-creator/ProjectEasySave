@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjetEasySaveCLI
 {
-    class viewDeleteBackupJob : viewMain
+    class viewDeleteBackupJob : viewMain //Herite de viewMain
     {
     }
 }

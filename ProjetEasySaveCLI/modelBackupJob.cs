@@ -9,7 +9,7 @@ using System.Configuration;
 namespace ProjetEasySaveCLI
 {
     
-    class modelBackupJob : modelMain
+    class modelBackupJob : modelMain //Herite de modelMain
     {
         modelLogs log = new modelLogs();
 

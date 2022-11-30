@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Configuration;
 
 namespace ProjetEasySaveCLI
 {
@@ -9,58 +11,65 @@ namespace ProjetEasySaveCLI
             private modelBackupJob menu = new modelBackupJob();
             private viewExecuteBackupJob viewMenu = new viewExecuteBackupJob();
     
+    
             public controllerExecuteBackupJob()
             {
+                menu.affiche();
                 viewMenu.display(menu.MenuExecute());
-                viewMenu.display(menu.Backup1());
-                viewMenu.display(menu.Backup2());
-                viewMenu.display(menu.Backup3());
-                viewMenu.display(menu.Backup4());
-                viewMenu.display(menu.Backup5());
                 viewMenu.display(menu.Return());
 
-            while (true)
+                while (true)
                 {
-                    string userchoice = Console.ReadLine();
-                    switch (userchoice)
-                    {
-                        case "1":
-                            Console.Clear();
 
-                            break;
-                        case "2":
-                            Console.Clear();
+                    execute();
 
-                            break;
-                        case "3":
-                            Console.Clear();
-
-                            break;
-                        case "4":
-                            Console.Clear();
-
-                            break;
-                        case "5":
-                            Console.Clear();
-
-                            break;
-                        case "6":
-                            Console.Clear();
-                            controllerMain mainmenu = new controllerMain();
-                            break;
-
-                    default:
-                            viewMenu.display(menu.GetError());
-
-                            break;
-                    }
                 }
 
             }
 
+            private void execute() //Fonction qui permet d'executer une sauvergade existante
+            {
+                string inputuser = Console.ReadLine();
 
-        }
+                if(inputuser == "6")
+                {
+                    Console.Clear();
+                    controllerMain mainmenu = new controllerMain();
+                }
+                else 
+                    { 
+                    string[] numbers = Regex.Split(inputuser, @"\D+"); //Permet de récupérer uniquement les chiffres d'une chaîne de caractère
+                    foreach (string nbr in numbers)
+                    {
+                        string name = ConfigurationManager.AppSettings["Name" + nbr]; //Permet de récupérer une valeur correspondante à un ID de notre fichier config
+                        string source = ConfigurationManager.AppSettings["Source" + nbr]; 
+                        string destination = ConfigurationManager.AppSettings["Destination" + nbr]; 
+                        string typeOfBackUp = ConfigurationManager.AppSettings["TypeOfBackUp" + nbr];
+
+                        if (typeOfBackUp == "complete")
+                        {
+                            menu.completeFile(source, destination, name);
+                            menu.completeDirectory(source, destination, name);
+                            controllerMain mainmenu = new controllerMain();
+                            Console.Clear();
+
+                        }
+                        else if(typeOfBackUp == "differential")
+                        {
+                            menu.differentialFile(source, destination, name);
+                            menu.differentialDirectory(source, destination, name);
+                            controllerMain mainmenu = new controllerMain();
+                            Console.Clear();
+                        }
+    
+                    }
+                }
+            }
+
+
+
     }
+}
 
 
 
