@@ -9,9 +9,22 @@
     <Grid Background="LightSteelBlue">
 
         <Image HorizontalAlignment="Left" Height="55" Margin="680,10,0,0" VerticalAlignment="Top" Width="110" Source="./logo_cesi.jpg"/>
-        <Button Content="See The Logs" HorizontalAlignment="Left" Height="63" Margin="343,181,0,0" VerticalAlignment="Top" Width="161"/>
-        <Button Content="Safeguarding Work" HorizontalAlignment="Left" Height="63" Margin="121,181,0,0" VerticalAlignment="Top" Width="161"/>
-        <Button Content="Change Language" HorizontalAlignment="Left" Height="63" Margin="574,181,0,0" VerticalAlignment="Top" Width="161"/>
+        <Image HorizontalAlignment="Left" Height="34" Margin="735,86,0,0" VerticalAlignment="Top" Width="50" Source="./drapeau_francais.png"/>
+        <Image HorizontalAlignment="Left" Height="30" Margin="735,138,0,0" VerticalAlignment="Top" Width="55" Source="./drapeau_anglais.png" RenderTransformOrigin="0.281,0.392"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="50,377,0,0" VerticalAlignment="Top" Width="40"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="100,377,0,0" VerticalAlignment="Top" Width="40"/>
+        <Button Content="Run" HorizontalAlignment="Left" Margin="150,377,0,0" VerticalAlignment="Top" Width="40"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="200,377,0,0" VerticalAlignment="Top" Width="40"/>
 
+        <ListView Margin="50,153,560,83">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListBox Margin="372,153,97,10"/>
+        <Label Content="Pre-registered backup jobs" HorizontalAlignment="Left" Margin="52,122,0,0" VerticalAlignment="Top" Width="188"/>
+        <Label Content="History" HorizontalAlignment="Left" Margin="372,117,0,0" VerticalAlignment="Top" Width="331"/>
     </Grid>
 </Window>
