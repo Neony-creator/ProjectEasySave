@@ -294,12 +294,12 @@ namespace ProjetEasySaveCLI
                     using (var str = new FileStream("stateLog.xml", FileMode.Open))
                     {
 
-                        var objectState = (List<stateLog>)DeOrserializer.Deserialize(str);
-                        int nb = objectState.Count;
+                        var objectStatei = (List<stateLog>)DeOrserializer.Deserialize(str);
+                        int nb = objectStatei.Count;
 
                         if (newLog == "false")
                         {
-                            stateO = objectState[nb - 1];
+                            stateO = objectStatei[nb - 1];
 
                         }
                         else
@@ -310,7 +310,7 @@ namespace ProjetEasySaveCLI
                         {
                             for (int i = 0; i < nb -1; i++)
                             {
-                                listXmlState.Add(objectState[i]);
+                                listXmlState.Add(objectStatei[i]);
                             }
 
                         }
