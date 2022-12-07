@@ -1,6 +1,6 @@
 {
   "MenuLangues": "Quelle langue souhaitez vous appliquer ?\nChoisissez une des options (1,2,3):\n1-Anglais\n2-Francais\n3-Retour\n",
-  "MainMenu": "Bienvenue dans l'application EasySave ! \nQue voulez-vous faire ?\nChoisissez une des options (1,2,3):\n1-Travaux de sauvegarde\n2-Voir les logs\n3-Changer de langue\n",
+  "MainMenu": "Bienvenue dans l'application EasySave ! \nQue voulez-vous faire ?\nChoisissez une des options (1,2,3):\n1-Travaux de sauvegarde\n2-Voir les logs\n3-Changer de langue\n4-Choix du type des fichiers logs\n",
   "Error": "Erreur :/\nVeulliez resaisir votre reponse\n",
   "MenuSave": "Que voulez-vous faire ?\nChoisissez une des options (1,2,3,4,5):\n1-Executer travaux de sauvegarde existant\n2-Creer\n3-Modifier\n4-Supprimer\n5-Retour\n",
   "Name": "Veulliez Saisir le nom de la sauvegarde\nNom :",
@@ -22,5 +22,9 @@
   "MenuModif2": "Choisissez le parametre que vous souhaitez modiffier (1, 2, 3, 4, 5):\n1-Nom\n2-Source\n3-Destination\n4-Type Sauvegarde\n5-Retour\n",
   "ValidCreateBackup": "La sauvegarde a bien ete cree !",
   "ErrorCreateBackup": "Un probleme est survenu veilliez reessayer",
-  "MenuModif1": "Choisissez la sauvegarde à modifier (1, 2, 3, 4, 5):\n"
+  "MenuModif1": "Choisissez la sauvegarde à modifier (1, 2, 3, 4, 5):\n",
+  "MenuChoiceLogs": "Choisissez le type des fichiers logs (1, 2, 3):\n1-JSON\n2-XMl\n3-JSON et XML\n4-Retour\n",
+  "TypeJson": "Le type des fichiers logs a bien ete change en JSON\nAppuyez sur n'importe quelle touche puis appuyez sur entrer pour continuer...\n",
+  "TypeXml": "Le type des fichiers logs a bien ete change en XML\nAppuyez sur n'importe quelle touche puis appuyez sur entrer pour continuer...\n",
+  "TypeJsonXml": "Le type des fichiers logs a bien ete change en JSON et XML\nAppuyez sur n'importe quelle touche puis appuyez sur entrer pour continuer...\n"
 }

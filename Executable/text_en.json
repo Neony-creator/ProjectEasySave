@@ -1,6 +1,6 @@
 {
   "MenuLangues": "What language would you like to use?\nChoose one of the options (1,2,3):\n1-English\n2-French\n3-Return\n",
-  "MainMenu": "Welcome to the EasySave application!\nWhat do you want to do?\nChoose one of the options (1,2,3):\n1-Safeguarding work\n2-See the logs\n3-Change language\n",
+  "MainMenu": "Welcome to the EasySave application!\nWhat do you want to do?\nChoose one of the options (1,2,3):\n1-Safeguarding work\n2-See the logs\n3-Change language\n4-Choice of log file type\n",
   "Error": "Error :/\nPlease check your answer\n",
   "MenuSave": "What do you want to do?\nChoose one of the options (1,2,3,4,5):\n1-Run existing backup job\n2-Create\n3-Modify\n4-Delete\n5-Return\n",
   "Name": "Enter the name of the backup\nName :",
@@ -21,5 +21,9 @@
   "MenuModif2": "Choose the parametre to modify (1, 2, 3, 4, 5):\n1-Name\n2-Source\n3-Destination\n4-Type Backup\n5-Return\n",
   "ValidCreateBackup": "The backup has been created!",
   "ErrorCreateBackup": "A problem has occured please try again",
-  "MenuModif1": "Choose the backup to modify :\n"
+  "MenuModif1": "Choose the backup to modify :\n",
+  "MenuChoiceLogs": "Choose the type of log files (1, 2, 3):\n1-JSON\n2-XMl\n3-JSON AND XML\n4-Return\n",
+  "TypeJson": "The log file type has been changed to JSON\nPress any key then press enter to continue...\n",
+  "TypeXml": "The log file type has been changed to XML\nPress any key then press enter to continue...\n",
+  "TypeJsonXml": "The log file type has been changed to JSON and XML\nPress any key then press enter to continue...\n"
 }
