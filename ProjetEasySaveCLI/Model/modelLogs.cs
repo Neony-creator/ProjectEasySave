@@ -60,6 +60,7 @@ namespace ProjetEasySaveCLI
         public void CreateJsonState(string name, string sourceFile, string destinationFile, long size)
         {
             string temp = ConfigurationManager.AppSettings["nbTotalFileJson"];
+            string newLog = ConfigurationManager.AppSettings["newLog"];
 
             TotalsizeJson = size + TotalsizeJson;
             string state = "Actif";
@@ -84,22 +85,38 @@ namespace ProjetEasySaveCLI
             List<stateLog> listJsonState = new List<stateLog>();
             try
             {
+                stateLog stateO = new stateLog();
                 if (File.Exists("StateLog.json"))
-            {
-              
-                var FileJsonRead = File.ReadAllText(@"StateLog.json");
-                
-                var objectState = JsonSerializer.Deserialize<List<stateLog>>(FileJsonRead);
-
-
-                int nb = objectState.Count;
-                
-                foreach (var Jss in objectState)
                 {
-                    listJsonState.Add(Jss);
-                }
-            }
-            stateLog stateO = new stateLog();
+              
+                    var FileJsonRead = File.ReadAllText(@"StateLog.json");
+                
+                    var objectState = JsonSerializer.Deserialize<List<stateLog>>(FileJsonRead);
+
+
+                    int nb = objectState.Count;
+                    if(newLog=="false")
+                    {
+                        stateO = objectState[nb - 1];
+                        
+                    }
+                    else
+                    {
+                        nb = nb + 1;
+                    }
+                    if(nb!=0)
+                        {
+                            for (int i = 0; i < nb - 1; i++)
+                            {
+                                listJsonState.Add(objectState[i]);
+                            }
+
+                            
+                        }                    
+                }              
+            
+
+            
             stateO.backUpName = name;
             stateO.sourcePath = sourceFile;
             stateO.destinationPath = destinationFile;            
@@ -122,6 +139,12 @@ namespace ProjetEasySaveCLI
             var json = JsonSerializer.Serialize(listJsonState, options: new() { WriteIndented = true });
             File.WriteAllText(@"StateLog.json", json);
             Console.WriteLine(json);
+            Configuration config2 = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config2.AppSettings.Settings.Remove("newLog");
+            config2.AppSettings.Settings.Add("newLog", "false");
+            config2.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+                
             }
                 catch (Exception e)
             {
@@ -176,7 +199,7 @@ namespace ProjetEasySaveCLI
         public void CreateXmlState(string name, string sourceFile, string destinationFile, long size)
         {
             string temp = ConfigurationManager.AppSettings["nbTotalFileXml"];
-
+            string newLog = ConfigurationManager.AppSettings["newLog"];
             TotalsizeXml = size + TotalsizeXml;
             string state = "Actif";
             int nbTotalFile = 0;
@@ -199,16 +222,38 @@ namespace ProjetEasySaveCLI
             XmlSerializer DeOrserializer = new XmlSerializer(typeof(List<stateLog>));
             try
             {
-                if (File.Exists("stateLog.xml"))
-                {                 
-                    
-                        using (var str = new FileStream("stateLog.xml", FileMode.Open))
-                        {
-                            listXmlState = (List<stateLog>)DeOrserializer.Deserialize(str);
-                        }
-                    
-                }
                 stateLog stateO = new stateLog();
+                if (File.Exists("stateLog.xml"))
+                {
+
+                    using (var str = new FileStream("stateLog.xml", FileMode.Open))
+                    {
+
+                        var objectState = (List<stateLog>)DeOrserializer.Deserialize(str);
+                        int nb = objectState.Count;
+
+                        if (newLog == "false")
+                        {
+                            stateO = objectState[nb - 1];
+
+                        }
+                        else
+                        {
+                            nb = nb + 1;
+                        }
+                        if (nb != 0)
+                        {
+                            for (int i = 0; i < nb -1; i++)
+                            {
+                                listXmlState.Add(objectState[i]);
+                            }
+
+                        }
+                    }
+                    
+
+                }
+
                 stateO.backUpName = name;
                 stateO.sourcePath = sourceFile;
                 stateO.destinationPath = destinationFile;
@@ -226,12 +271,18 @@ namespace ProjetEasySaveCLI
 
 
                 listXmlState.Add(stateO);
-
+                     
                 using (var str = new FileStream("stateLog.xml", FileMode.Create))
                 {
                     DeOrserializer.Serialize(str, listXmlState);
                 }
-                Console.WriteLine();
+                
+
+                Configuration config2 = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config2.AppSettings.Settings.Remove("newLog");
+                config2.AppSettings.Settings.Add("newLog", "false");
+                config2.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
             }
             catch (Exception e)
             {

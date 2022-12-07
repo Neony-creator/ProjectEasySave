@@ -161,17 +161,19 @@ namespace ProjetEasySaveCLI
 
         public void countNbTotalFile(string source)
         {
-
-            int nbFile = 0;
             try
             {
+                 
+                int nbFile = 0;            
                 nbFile = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Length;
                 Console.WriteLine(nbFile);
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 config.AppSettings.Settings.Remove("nbTotalFileXml");
+                config.AppSettings.Settings.Remove("newLog");
                 config.AppSettings.Settings.Remove("nbTotalFileJson");
                 config.AppSettings.Settings.Remove("nbTotalFilePerma");
                 config.AppSettings.Settings.Add("nbTotalFileJson", nbFile.ToString());
+                config.AppSettings.Settings.Add("newLog", "true");
                 config.AppSettings.Settings.Add("nbTotalFileXml", nbFile.ToString());
                 config.AppSettings.Settings.Add("nbTotalFilePerma", nbFile.ToString());
                 Console.ReadLine();
