@@ -50,6 +50,39 @@ namespace ProjetEasySaveCLI
 
         }
 
+        public void ApplicatechoiceLog(string name, string sourceFile, string destinationFile, long size, double timeTransfert)
+        {
+            switch(ConfigurationManager.AppSettings["logFormat"])
+            {
+                case "Json":
+                    CreateJsonState(name, sourceFile, destinationFile, size);                  
+                    CreateJsonDaily(name, sourceFile, destinationFile, size, timeTransfert);                 
+                    break;
+                
+                case "Xml":
+                    
+                    CreateXmlState(name, sourceFile, destinationFile, size);                    
+                    CreateXmlDaily(name, sourceFile, destinationFile, size, timeTransfert);
+                    break;
+                
+                case "JsonXml":
+                    CreateJsonState(name, sourceFile, destinationFile, size);
+                    CreateXmlState(name, sourceFile, destinationFile, size);
+                    CreateJsonDaily(name, sourceFile, destinationFile, size, timeTransfert);
+                    CreateXmlDaily(name, sourceFile, destinationFile, size, timeTransfert);
+                    break;
+
+                default:
+                    CreateJsonState(name, sourceFile, destinationFile, size);
+                    CreateXmlState(name, sourceFile, destinationFile, size);
+                    CreateJsonDaily(name, sourceFile, destinationFile, size, timeTransfert);
+                    CreateXmlDaily(name, sourceFile, destinationFile, size, timeTransfert);
+
+                    break;
+            }
+
+        }
+
 
         public void CreateJsonDaily(string name, string sourceFile, string destinationFile, long size, double timeTransfert)
         {

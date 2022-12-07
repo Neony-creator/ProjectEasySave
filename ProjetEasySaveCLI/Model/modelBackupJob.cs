@@ -165,8 +165,7 @@ namespace ProjetEasySaveCLI
             {
                  
                 int nbFile = 0;            
-                nbFile = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Length;
-                Console.WriteLine(nbFile);
+                nbFile = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Length;                
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 config.AppSettings.Settings.Remove("nbTotalFileXml");
                 config.AppSettings.Settings.Remove("newLog");
@@ -175,8 +174,7 @@ namespace ProjetEasySaveCLI
                 config.AppSettings.Settings.Add("nbTotalFileJson", nbFile.ToString());
                 config.AppSettings.Settings.Add("newLog", "true");
                 config.AppSettings.Settings.Add("nbTotalFileXml", nbFile.ToString());
-                config.AppSettings.Settings.Add("nbTotalFilePerma", nbFile.ToString());
-                Console.ReadLine();
+                config.AppSettings.Settings.Add("nbTotalFilePerma", nbFile.ToString());                
                 config.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("appSettings");
             } 
@@ -264,18 +262,13 @@ namespace ProjetEasySaveCLI
                             FileD.Close();
                             if ((file1byte - file2byte) == 0)
                             {
-                                log.CreateJsonState(name, sourcePathFile, destinationPathFile, size);
-                                log.CreateXmlState(name, sourcePathFile, destinationPathFile, size);
-                                log.CreateJsonDaily(name, sourcePathFile, destinationPathFile, size,timeTransfert);
-                                log.CreateXmlDaily(name, sourcePathFile, destinationPathFile, size,timeTransfert);
+                                log.ApplicatechoiceLog(name, sourcePathFile, destinationPathFile, size, timeTransfert);
                                 Console.WriteLine("c'est un succes");
                             }
                             else
                             {
-                                log.CreateJsonDaily(name, sourcePathFile, destinationPathFile, size, (timeTransfert)*-1);
-                                log.CreateXmlDaily(name, sourcePathFile, destinationPathFile, size, (timeTransfert)*-1);
-                                log.CreateJsonState(name, sourcePathFile, destinationPathFile, size);
-                                log.CreateXmlState(name, sourcePathFile, destinationPathFile, size);
+                                log.ApplicatechoiceLog(name, sourcePathFile, destinationPathFile, size, (timeTransfert) * -1);
+                                
                                 Console.WriteLine("error de copy");
                             }
                         }
@@ -368,11 +361,8 @@ namespace ProjetEasySaveCLI
                                     sw.Start();
                                     File.Copy(sourcePathFile, destinationPathFile, true);
                                     sw.Stop();
-                                    timeTransfert = sw.Elapsed.Milliseconds;                                    
-                                    log.CreateJsonDaily(name, sourcePathFile, destinationPathFile, size, timeTransfert);
-                                    log.CreateJsonState(name, sourcePathFile, destinationPathFile, size);
-                                    log.CreateXmlDaily(name, sourcePathFile, destinationPathFile, size, timeTransfert);
-                                    log.CreateXmlState(name, sourcePathFile, destinationPathFile, size);
+                                    timeTransfert = sw.Elapsed.Milliseconds;
+                                    log.ApplicatechoiceLog(name, sourcePathFile, destinationPathFile, size, timeTransfert);
                                     Console.WriteLine("Le fichier ne correspond pas");
 
                                 }
@@ -392,11 +382,8 @@ namespace ProjetEasySaveCLI
                         sw.Start();
                         File.Copy(sourcePathFile, destinationPathFile, true);
                         sw.Stop();
-                        timeTransfert = sw.Elapsed.Milliseconds;                        
-                        log.CreateJsonDaily(name, sourcePathFile, destinationPathFile, size, timeTransfert);
-                        log.CreateXmlDaily(name, sourcePathFile, destinationPathFile, size, timeTransfert);
-                        log.CreateJsonState(name, sourcePathFile, destinationPathFile, size);
-                        log.CreateXmlState(name, sourcePathFile, destinationPathFile, size);
+                        timeTransfert = sw.Elapsed.Milliseconds;
+                        log.ApplicatechoiceLog(name, sourcePathFile, destinationPathFile, size, timeTransfert);
                         Console.WriteLine(dirNotFound.Message);
                         Console.WriteLine("Le fichier n'existe pas");
                     }
