@@ -7,26 +7,20 @@
         mc:Ignorable="d"
         Title="Home" Height="450" Width="800">
     <Grid Background="LightSteelBlue">
+        <Frame x:Name="Main" />
 
 
 
-
-        <Button Content="Create" HorizontalAlignment="Left" Margin="50,377,0,0" VerticalAlignment="Top" Width="40"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="50,377,0,0" VerticalAlignment="Top" Width="40" Click="BtnClickPCreate"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="100,377,0,0" VerticalAlignment="Top" Width="40"/>
         <Button Content="Run" HorizontalAlignment="Left" Margin="150,377,0,0" VerticalAlignment="Top" Width="40"/>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="200,377,0,0" VerticalAlignment="Top" Width="40"/>
 
 
-        <ListView Margin="50,153,560,83">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ListBox Margin="372,153,97,10"/>
-        <Label Content="Pre-registered backup jobs" HorizontalAlignment="Left" Margin="52,122,0,0" VerticalAlignment="Top" Width="188"/>
-        <Label Content="History" HorizontalAlignment="Left" Margin="372,117,0,0" VerticalAlignment="Top" Width="331"/>
+
+        <ListBox Margin="556,153,97,10"/>
+        <Label Content="Pre-registered backup jobs" HorizontalAlignment="Left" Margin="294,117,0,0" VerticalAlignment="Top" Width="188"/>
+        <Label Content="History" HorizontalAlignment="Left" Margin="556,117,0,0" VerticalAlignment="Top" Width="147"/>
         <Button Content="" HorizontalAlignment="Left" Margin="672,20,0,0" VerticalAlignment="Top" Height="57" Width="118" Focusable="False" IsHitTestVisible="False">
             <Button.Background>
                 <ImageBrush ImageSource="/logo_cesi.jpg"/>
@@ -37,10 +31,13 @@
                 <ImageBrush ImageSource="/drapeau_francais.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" HorizontalAlignment="Left" Margin="735,130,0,0" VerticalAlignment="Top" Height="34" Width="50" Click="Button_Click" IsHitTestVisible="False">
+        <Button Content="" HorizontalAlignment="Left" Margin="735,130,0,0" VerticalAlignment="Top" Height="34" Width="50" IsHitTestVisible="False">
             <Button.Background>
                 <ImageBrush ImageSource="/drapeau_anglais.png"/>
             </Button.Background>
         </Button>
+        <Rectangle HorizontalAlignment="Left" Height="207" Margin="52,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="188"/>
+        <ListBox Margin="294,153,294,74"/>
+        <Label Content="Backup Job Manager" HorizontalAlignment="Left" Margin="60,117,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

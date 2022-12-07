@@ -16,21 +16,13 @@ using System.Windows.Shapes;
 namespace WPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour CreateView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CreateView : Page
     {
-        public MainWindow()
+        public CreateView()
         {
             InitializeComponent();
         }
-
-
-        private void BtnClickPCreate(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new CreateView();
-        }
-
-  
     }
 }
