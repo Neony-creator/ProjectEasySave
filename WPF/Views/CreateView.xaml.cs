@@ -20,6 +20,10 @@ namespace WPF
     /// </summary>
     public partial class CreateView : Page
     {
+        String name;
+        String source;
+        String destination;
+        String type;
         public CreateView()
         {
             InitializeComponent();
@@ -33,6 +37,19 @@ namespace WPF
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void OnClick(object sender, RoutedEventArgs e)
+        {
+            name = Nametxt.Text;
+            source = Sourcetxt.Text;
+            destination = Destinationtxt.Text;
+            type = Typetxt.Text;
+            this.Validate.Click += new RoutedEventHandler(OnClick);
+            this.displayText.Text += name;
+            this.displayText.Text += source;
+            this.displayText.Text += destination;
+            this.displayText.Text += type;
         }
     }
 }
