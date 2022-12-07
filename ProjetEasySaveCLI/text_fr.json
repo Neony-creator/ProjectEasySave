@@ -24,7 +24,7 @@
   "ErrorCreateBackup": "Un probleme est survenu veilliez reessayer",
   "MenuModif1": "Choisissez la sauvegarde à modifier (1, 2, 3, 4, 5):\n",
   "MenuChoiceLogs": "Choisissez le type des fichiers logs (1, 2, 3):\n1-JSON\n2-XMl\n3-JSON et XML\n4-Retour\n",
-  "TypeJson": "Le type des fichiers logs a bien été changé en JSON\nAppuyez sur n'importe quelle touche puis appuyez sur entrer pour continuer...\n",
-  "TypeXml": "Le type des fichiers logs a bien été changé en XML\nAppuyez sur n'importe quelle touche puis appuyez sur entrer pour continuer...\n",
-  "TypeJsonXml": "Le type des fichiers logs a bien été changé en JSON et XML\nAppuyez sur n'importe quelle touche puis appuyez sur entrer pour continuer...\n"
+  "TypeJson": "Le type des fichiers logs a bien ete change en JSON\nAppuyez sur n'importe quelle touche puis appuyez sur entrer pour continuer...\n",
+  "TypeXml": "Le type des fichiers logs a bien ete change en XML\nAppuyez sur n'importe quelle touche puis appuyez sur entrer pour continuer...\n",
+  "TypeJsonXml": "Le type des fichiers logs a bien ete change en JSON et XML\nAppuyez sur n'importe quelle touche puis appuyez sur entrer pour continuer...\n"
 }
