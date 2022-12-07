@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF.Controllers;
 
 namespace WPF
 {
@@ -20,10 +21,10 @@ namespace WPF
     /// </summary>
     public partial class CreateView : Page
     {
-        String name;
-        String source;
-        String destination;
-        String type;
+        public String name;
+        public String source;
+        public String destination;
+        public String type;
         public CreateView()
         {
             InitializeComponent();
@@ -45,11 +46,13 @@ namespace WPF
             source = Sourcetxt.Text;
             destination = Destinationtxt.Text;
             type = Typetxt.Text;
-            this.Validate.Click += new RoutedEventHandler(OnClick);
+            /*this.Validate.Click += new RoutedEventHandler(OnClick);
             this.displayText.Text += name;
             this.displayText.Text += source;
             this.displayText.Text += destination;
-            this.displayText.Text += type;
+            this.displayText.Text += type;*/
+
+            ControllerCreate launch = new ControllerCreate();
         }
     }
 }
