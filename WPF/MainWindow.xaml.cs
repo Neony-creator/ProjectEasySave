@@ -26,7 +26,7 @@ namespace WPF
         public MainWindow()
         {
             InitializeComponent();
-            controllerMain launch = new controllerMain();
+            //controllerMain launch = new controllerMain();
         }
 
 
