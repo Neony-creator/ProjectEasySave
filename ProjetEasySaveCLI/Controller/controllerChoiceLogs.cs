@@ -1,17 +1,21 @@
 ﻿using System;
-using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ProjetEasySaveCLI
 {
-    class controllerMain
+    class controllerChoiceLogs
     {
         string result;
         private modelMain menu = new modelMain(); //On instancie le model
         private viewMain viewMenu = new viewMain(); //On instancie la view
-        public controllerMain()
+        private modelLogs menuChoiceLogs = new modelLogs(); //On instancie le modelChoiceLogs
+        public controllerChoiceLogs()
         {
-           
-            viewMenu.display(menu.GetinterfaceData()); //On affiche le menu principal de l'application
+
+            viewMenu.display(menuChoiceLogs.MenuChoiceLogs()); //On affiche le menu principal de l'application
 
 
             while (true)
@@ -21,23 +25,17 @@ namespace ProjetEasySaveCLI
                 {
                     case "1":
                         Console.Clear(); //On efface les informations affichées sur la console
-                        controllerBackupJob backup = new controllerBackupJob(); //On instancie le controller de Backup, qui prendrera le relais afin d'entrer dans le menu de sauvegarde
+                        
                         break;
 
                     case "2":
                         Console.Clear();
-                        Console.WriteLine(menu.ScearchNbBackUp());
-                        controllerLogs logs = new controllerLogs(); //On instancie le controller de logs, qui prendrera le relais afin d'entrer le menu de logs
+                        
                         break;
 
                     case "3":
                         Console.Clear();
-                        controllerLanguages language = new controllerLanguages(); //On instancie le controller de langage, qui prendrera le relais afin d'entrer le menu de changement de langue
-                        break;
-
-                    case "4":
-                        Console.Clear();
-                        controllerChoiceLogs choiceLogs = new controllerChoiceLogs(); //On instancie le controller de langage, qui prendrera le relais afin d'entrer le menu de changement de langue
+                        controllerMain mainmenu = new controllerMain(); //On retourne au menu
                         break;
 
                     default:
@@ -50,5 +48,6 @@ namespace ProjetEasySaveCLI
 
 
         }
+
     }
 }

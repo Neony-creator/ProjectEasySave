@@ -17,6 +17,16 @@ namespace ProjetEasySaveCLI
             return MENU_LOGS;
            
         }
+
+        public string MenuChoiceLogs()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string MENU_CHOICE_LOGS = $"{langue.MenuChoiceLogs}";
+            return MENU_CHOICE_LOGS;
+
+        }
+
+
         public void CreateJsonDaily(string name, string sourceFile, string destinationFile, long size, double timeTransfert)
         {
             try

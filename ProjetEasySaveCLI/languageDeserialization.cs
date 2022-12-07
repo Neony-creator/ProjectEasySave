@@ -31,6 +31,7 @@ namespace ProjetEasySaveCLI
             public string Backup5 { get; set; }
             public string Return { get; set; }
             public string MenuModif1 { get; set; }
+            public string MenuChoiceLogs { get; set; }
 
     }
 }
