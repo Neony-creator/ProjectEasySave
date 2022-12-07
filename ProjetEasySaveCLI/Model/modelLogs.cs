@@ -26,6 +26,28 @@ namespace ProjetEasySaveCLI
 
         }
 
+        public string TypeLogsJson()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string TYPE_JSON = $"{langue.TypeJson}";
+            return TYPE_JSON;
+
+        }
+        public string TypeLogsXml()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string TYPE_XML = $"{langue.TypeXml}";
+            return TYPE_XML;
+
+        }
+        public string TypeLogsJsonXml()
+        {
+            languageDeserialization langue = JsonSerializer.Deserialize<languageDeserialization>(testLanguage());
+            string TYPE_JSON_XML = $"{langue.TypeJsonXml}";
+            return TYPE_JSON_XML;
+
+        }
+
 
         public void CreateJsonDaily(string name, string sourceFile, string destinationFile, long size, double timeTransfert)
         {

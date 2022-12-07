@@ -32,6 +32,9 @@ namespace ProjetEasySaveCLI
             public string Return { get; set; }
             public string MenuModif1 { get; set; }
             public string MenuChoiceLogs { get; set; }
+            public string TypeJson { get; set; }
+            public string TypeXml { get; set; }
+            public string TypeJsonXml { get; set; }
 
     }
 }
