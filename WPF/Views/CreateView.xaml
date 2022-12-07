@@ -9,7 +9,11 @@
       Title="CreateView">
 
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="103,205,0,0" VerticalAlignment="Top"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="187,325,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Nametxt" HorizontalAlignment="Left" Margin="81,170,0,0" Text="Nom" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox x:Name="Sourcetxt" HorizontalAlignment="Left" Margin="81,225,0,0" Text="Source" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox x:Name="Destinationtxt" HorizontalAlignment="Left" Margin="81,274,0,0" Text="Destination" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox x:Name="Typetxt" HorizontalAlignment="Left" Margin="81,325,0,0" Text="Type" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" TextChanged="TextBox_TextChanged_1"/>
 
     </Grid>
 </Page>
