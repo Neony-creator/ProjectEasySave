@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjetEasySaveCLI
 {
-    class dailyLog
+    public class dailyLog
     {
         public string backUpName { get; set; }
         public string sourcePathFile { get; set; }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjetEasySaveCLI
 {
-    class stateLog
+    public class stateLog
     {
         public string backUpName { get; set; }
         public string timeStamp { get; set; }

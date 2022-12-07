@@ -45,7 +45,7 @@ namespace ProjetEasySaveCLI
                         string source = ConfigurationManager.AppSettings["Source" + nbr]; 
                         string destination = ConfigurationManager.AppSettings["Destination" + nbr]; 
                         string typeOfBackUp = ConfigurationManager.AppSettings["TypeOfBackUp" + nbr];
-
+                        menu.countNbTotalFile(source);
                         if (typeOfBackUp == "complete")
                         {
                             menu.completeFile(source, destination, name);
