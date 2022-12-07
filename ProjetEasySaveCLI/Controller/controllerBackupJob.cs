@@ -74,8 +74,7 @@ namespace ProjetEasySaveCLI
                 name = Console.ReadLine();
 
                 viewMenu.display(model.GetSource());
-                source = Console.ReadLine();
-                model.countNbTotalFile(source);
+                source = Console.ReadLine();                
                 viewMenu.display(model.GetDestination());
                 destination = Console.ReadLine();
 
@@ -84,7 +83,7 @@ namespace ProjetEasySaveCLI
 
                 if (confirmation == "y")
                 {
-
+                    model.countNbTotalFile(source);
                     viewMenu.display(model.GetTypeBackUp());
                     typeOfBackUp = Console.ReadLine();
                     if (typeOfBackUp == "1")
