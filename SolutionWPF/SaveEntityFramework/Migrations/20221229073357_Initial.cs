@@ -1,0 +1,32 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace SaveEntityFramework.Migrations
+{
+    public partial class Initial : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Saves",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    SaveName = table.Column<string>(type: "TEXT", nullable: true),
+                    SourceDisplay = table.Column<string>(type: "TEXT", nullable: true),
+                    DestinationDisplay = table.Column<string>(type: "TEXT", nullable: true),
+                    TypeDisplay = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Saves", x => x.Id);
+                });
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Saves");
+        }
+    }
+}

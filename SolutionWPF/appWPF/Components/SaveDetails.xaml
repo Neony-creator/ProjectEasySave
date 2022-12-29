@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="appWPF.Components.SaveDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:appWPF.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Border BorderBrush="{StaticResource BorderPrimary}" BorderThickness="1" CornerRadius="5" Padding="20" SnapsToDevicePixels="True">
+
+            <Grid>
+                <Grid>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasSelectedSave}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <TextBlock Grid.Row="0"  Text="Please select a Backup to see more details."/>
+                </Grid>
+
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasSelectedSave}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" FontSize="24 " Text="{Binding SaveName}"/>
+
+                    <Grid Grid.Row="1" Margin="0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="Path Source :"/>
+
+                        <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding SourceDisplay}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="Path Desitination :"/>
+
+                        <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding DestinationDisplay}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="Type Backup :"/>
+
+                        <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding TypeDisplay}"/>
+                    </Grid>
+
+
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
