@@ -17,12 +17,14 @@ namespace appWPF.ViewModels
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
 
+        public ICommand ExecuteCommand { get; }
 
 
-        public SavesListingItemViewModel(Save save, SavesStore savesStore, ModalNavigationStore modalNavigationStore) //1:43:20
+        public SavesListingItemViewModel(Save save, SavesStore savesStore, ModalNavigationStore modalNavigationStore)
         {
             Save = save;
 
+            ExecuteCommand = new ExecuteSaveCommand(this, savesStore);
             EditCommand = new OpenEditSaveCommand(this, savesStore, modalNavigationStore);
             DeleteCommand = new DeleteSaveCommand(this, savesStore);
         }

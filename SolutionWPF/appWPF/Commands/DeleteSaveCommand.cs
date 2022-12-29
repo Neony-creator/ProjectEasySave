@@ -25,7 +25,7 @@ namespace appWPF.Commands
         public override async Task ExecuteAsync(object parameter)
         {
             Save save = _savesListingItemViewModel.Save;
-
+            //string name = save.DestinationDisplay;
             try
             {
                 await _savesStore.Delete(save.Id);

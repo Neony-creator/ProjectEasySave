@@ -66,8 +66,10 @@
                             </Style>
                         </StackPanel.Resources>
 
+                        <Button Command="{Binding ExecuteCommand}" Content="Execute"/>
                         <Button Command="{Binding EditCommand}" Content="Edit"/>
                         <Button Command="{Binding DeleteCommand}" Content="Delete"/>
+                        
                     </StackPanel>
                 </Border>
             </custom:DropdownMenu>

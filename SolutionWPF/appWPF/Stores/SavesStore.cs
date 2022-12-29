@@ -15,6 +15,7 @@ namespace appWPF.Stores
         private readonly ICreateSaveCommand _createSaveCommand;
         private readonly IUpdateSaveCommand _updateSaveCommand;
         private readonly IDeleteSaveCommand _deleteSaveCommand;
+        
 
         private readonly List<Save> _saves;
         public IEnumerable<Save> Saves => _saves;
@@ -23,6 +24,7 @@ namespace appWPF.Stores
         public event Action<Save> SaveAdded;
         public event Action<Save> SaveUpdated;
         public event Action<Guid> SaveDeleted;
+        //public event Action<Save> SaveExecute;
 
         public SavesStore(IGetAllSavesQuery getAllSavesQuery, ICreateSaveCommand createSaveCommand, IUpdateSaveCommand updateSaveCommand, IDeleteSaveCommand deleteSaveCommand)
         {
@@ -79,5 +81,6 @@ namespace appWPF.Stores
             SaveDeleted?.Invoke(id);
         }
 
+        //Task execute
     }
 }

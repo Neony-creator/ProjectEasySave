@@ -47,12 +47,15 @@ namespace appWPF.ViewModels
 
             LoadSavesCommand = new LoadSavesCommand(savesStore);
 
+            //
             _saveStore.SavesLoaded += SaveStore_SavesLoaded;
             _saveStore.SaveAdded += SaveStore_SaveAdded;
             _saveStore.SaveUpdated += SaveStore_SaveUpdated;
             _saveStore.SaveDeleted += SaveStore_SaveDeleted;
 
         }
+
+        //
 
         private void SaveStore_SaveDeleted(Guid id)
         {
