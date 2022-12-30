@@ -16,7 +16,6 @@ namespace appWPF.ViewModels
         public string SaveName => Save.SaveName;
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
-
         public ICommand ExecuteCommand { get; }
 
 

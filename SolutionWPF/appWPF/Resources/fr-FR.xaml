@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="Culture">fr-FR</system:String>
+
+    <system:String x:Key="CreateButton">Créer</system:String>
+    <system:String x:Key="DeleteButton">Supprimer</system:String>
+    <system:String x:Key="UpdateButton">Editer</system:String>
+    <system:String x:Key="ExecuteButton">Exécuter</system:String>
+    <system:String x:Key="Back">Annuler</system:String>
+    <system:String x:Key="ChangeLangage">Changer de langue</system:String>
+    <system:String x:Key="CreateWindow">Créer sauvegarde</system:String>
+    <system:String x:Key="UpdateWindow">Editer sauvegarde</system:String>
+    <system:String x:Key="NameBackup">Nom de la sauvegarde :</system:String>
+    <system:String x:Key="SourceBackup">Chemin source de la sauvegarde :</system:String>
+    <system:String x:Key="DestinationBackup">Chemin de destination de la sauvegarde :</system:String>
+    <system:String x:Key="TypeBackup">Type de la sauvegarde (Ecrire "complete" ou "differential") :</system:String>
+    <system:String x:Key="Langue1">Français</system:String>
+    <system:String x:Key="Langue2">Anglais</system:String>
+    <system:String x:Key="DefaultMessage">Veuillez sélectionner une sauvegarde pour voir plus de détails.</system:String>
+</ResourceDictionary>

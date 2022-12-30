@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:appWPF.Components" xmlns:custom="clr-namespace:DropdownMenuControl;assembly=DropdownMenuControl"
+             xmlns:local="clr-namespace:appWPF.Components" 
+             xmlns:custom="clr-namespace:DropdownMenuControl;assembly=DropdownMenuControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Border Padding="10" TextBlock.FontSize="16">
@@ -66,9 +67,9 @@
                             </Style>
                         </StackPanel.Resources>
 
-                        <Button Command="{Binding ExecuteCommand}" Content="Execute"/>
-                        <Button Command="{Binding EditCommand}" Content="Edit"/>
-                        <Button Command="{Binding DeleteCommand}" Content="Delete"/>
+                        <Button Command="{Binding ExecuteCommand}" Content="{DynamicResource ExecuteButton}"/>
+                        <Button Command="{Binding EditCommand}" Content="{DynamicResource UpdateButton}"/>
+                        <Button Command="{Binding DeleteCommand}" Content="{DynamicResource DeleteButton}"/>
                         
                     </StackPanel>
                 </Border>

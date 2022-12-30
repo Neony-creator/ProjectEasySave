@@ -27,7 +27,7 @@
                     <ColumnDefinition Width="*" MaxWidth="250"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" FontWeight="Bold" Text="Backup Name :"/>
+                <TextBlock Grid.Row="0" FontWeight="Bold" Text="{DynamicResource NameBackup}"/>
 
                 <TextBox Grid.Column="1" Width="150" Margin="20 0 0 0" Text="{Binding SaveName, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
@@ -38,7 +38,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" FontWeight="Bold" Text="Source path :"/>
+                <TextBlock Grid.Row="0" FontWeight="Bold" Text="{DynamicResource SourceBackup}"/>
 
                 <TextBox Grid.Column="1" Width="150" Margin="20 0 0 0" Text="{Binding SourceDisplay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
@@ -49,7 +49,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" FontWeight="Bold" Text="Destination path :"/>
+                <TextBlock Grid.Row="0" FontWeight="Bold" Text="{DynamicResource DestinationBackup}"/>
 
                 <TextBox Grid.Column="1" Width="150" Margin="20 0 0 0" Text="{Binding DestinationDisplay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
@@ -60,7 +60,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" FontWeight="Bold" Text="Type of backup (complete or differential):"/>
+                <TextBlock Grid.Row="0" FontWeight="Bold" Text="{DynamicResource TypeBackup}"/>
 
                 <TextBox Grid.Column="1" Width="150" Margin="20 0 0 0" Text="{Binding TypeDisplay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
@@ -69,8 +69,8 @@
         </Grid>
 
         <WrapPanel Grid.Row="1" Margin="0 30 0 0">
-            <Button Command="{Binding SubmitCommand}" Content="Submit" Margin="0 0 5 0" Cursor="Hand"/>
-            <Button Command="{Binding CancelCommand}" Content="Cancel" Style="{StaticResource ButtonSecondary}"/>
+            <Button Command="{Binding SubmitCommand}" Content="{DynamicResource CreateButton}" Margin="0 0 5 0" Cursor="Hand"/>
+            <Button Command="{Binding CancelCommand}" Content="{DynamicResource Back}" Style="{StaticResource ButtonSecondary}"/>
         </WrapPanel>
     </Grid>
 </UserControl>

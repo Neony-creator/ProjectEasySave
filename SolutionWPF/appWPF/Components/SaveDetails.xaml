@@ -21,7 +21,7 @@
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    <TextBlock Grid.Row="0"  Text="Please select a Backup to see more details."/>
+                    <TextBlock Grid.Row="0"  Text="{DynamicResource DefaultMessage}"/>
                 </Grid>
 
                 <Grid Grid.IsSharedSizeScope="True">
@@ -50,7 +50,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="Path Source :"/>
+                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="{DynamicResource SourceBackup}"/>
 
                         <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding SourceDisplay}"/>
                     </Grid>
@@ -61,7 +61,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="Path Desitination :"/>
+                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="{DynamicResource DestinationBackup}"/>
 
                         <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding DestinationDisplay}"/>
                     </Grid>
@@ -72,7 +72,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="Type Backup :"/>
+                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="{DynamicResource TypeBackup}"/>
 
                         <TextBlock Grid.Column="1" Margin="20 0 0 0" Text="{Binding TypeDisplay}"/>
                     </Grid>

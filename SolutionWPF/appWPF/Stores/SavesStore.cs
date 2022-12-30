@@ -24,7 +24,6 @@ namespace appWPF.Stores
         public event Action<Save> SaveAdded;
         public event Action<Save> SaveUpdated;
         public event Action<Guid> SaveDeleted;
-        //public event Action<Save> SaveExecute;
 
         public SavesStore(IGetAllSavesQuery getAllSavesQuery, ICreateSaveCommand createSaveCommand, IUpdateSaveCommand updateSaveCommand, IDeleteSaveCommand deleteSaveCommand)
         {
@@ -80,7 +79,5 @@ namespace appWPF.Stores
 
             SaveDeleted?.Invoke(id);
         }
-
-        //Task execute
     }
 }

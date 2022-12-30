@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:appWPF.Views" 
+             xmlns:custom="clr-namespace:DropdownMenuControl;assembly=DropdownMenuControl"
              xmlns:components="clr-namespace:appWPF.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -11,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -23,7 +25,7 @@
 
             <Button 
                 Grid.Column="1" 
-                Content="Add" 
+                Content="{DynamicResource CreateButton}" 
                 FontSize="16"
                 Command="{Binding CreateSave}" Cursor="Hand"/>
         </Grid>
@@ -38,6 +40,80 @@
             <components:SavesListing Grid.Column="0" DataContext="{Binding SavesListingViewModel}"/>
             <components:SaveDetails Grid.Column="1" Margin="20 0 0 0" DataContext="{Binding SaveDetailsViewModel}"/>
         </Grid>
-            
+        
+        <Border Grid.Row="2" Padding="5" TextBlock.FontSize="16">
+            <Grid>
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"/>
+
+                <TextBlock Grid.Column="1" Text="{DynamicResource ChangeLangage}"/>
+
+                <Border Grid.Column="2"  Margin="10 0 10 0" >
+                    <Grid Background="DeepSkyBlue">
+                <custom:DropdownMenu x:Name="dropdown" Margin="5 0 5 0">
+                    <Border Background="White" BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel MinWidth="125">
+                            <StackPanel.Resources>
+                                <Style TargetType="Button" >
+                                    <Setter Property="Background" Value="#f0f0f0"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                    <Setter Property="Padding" Value="20 10"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <EventSetter Event="Click" Handler="Button_Click"/>
+
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}" 
+                                                                        Padding="{TemplateBinding Padding}" 
+                                                                        Margin="{TemplateBinding Margin}" >
+                                                    <ContentPresenter/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation 
+                                                                                To="#c7c7c7" 
+                                                                                Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
+                                                                                Duration="0:0:0.1"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation 
+                                                                                To="#f0f0f0" 
+                                                                                Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
+                                                                                Duration="0:0:0.1"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Resources>
+
+                                    <Button Click="ChangeToFr" Content="{DynamicResource Langue1}"/>
+                                    <Button Click="ChangeToEn" Content="{DynamicResource Langue2}"/>
+                        </StackPanel>
+                    </Border>
+                </custom:DropdownMenu>
+                    </Grid>
+                </Border>
+            </Grid>
+         </Border>
     </Grid>
 </UserControl>

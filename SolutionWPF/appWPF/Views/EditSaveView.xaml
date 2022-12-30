@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeader}" Text="Edit Backup"/>
+        <TextBlock Grid.Row="0" Style="{StaticResource PageHeader}" Text="{DynamicResource UpdateWindow}"/>
 
         <components:SaveDetailsForm Grid.Row="1" Margin="0 30 0 0" DataContext="{Binding SaveDetailsFormViewModel}"/>
     </Grid>

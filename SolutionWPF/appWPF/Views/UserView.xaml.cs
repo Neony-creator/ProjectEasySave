@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,5 +25,28 @@ namespace appWPF.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            dropdown.IsOpen = false;
+        }
+
+        private void ChangeToEn(object sender, RoutedEventArgs e)
+        {
+            if (sender != null)
+            {
+                ((App)Application.Current).ChangeLangage(new Uri(@"Resources\en-US.xaml", UriKind.Relative));
+            }
+        }
+
+        private void ChangeToFr(object sender, RoutedEventArgs e)
+        {
+            if (sender != null)
+            {
+                ((App)Application.Current).ChangeLangage(new Uri(@"Resources\fr-FR.xaml", UriKind.Relative)); 
+            }
+        }
+
+
     }
 }

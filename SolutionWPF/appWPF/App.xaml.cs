@@ -11,7 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -22,6 +24,8 @@ namespace appWPF
     /// </summary>
     public partial class App : Application
     {
+        private ResourceDictionary obj;
+
         private readonly ModalNavigationStore _modalNavigationStore;
         private readonly SavesDbContextFactory _savesDbContextFactory;
         private readonly IGetAllSavesQuery _getAllSavesQuery;
@@ -32,6 +36,8 @@ namespace appWPF
         private readonly SelectedSaveStore _selectedSaveStore;
         public App()
         {
+
+
             string connectionString = "Data Source=Saves.db";
 
             _modalNavigationStore = new ModalNavigationStore();
@@ -57,9 +63,37 @@ namespace appWPF
                 DataContext = new MainViewModel(_modalNavigationStore, savesViewModel)
             };
             MainWindow.Show();
+
+            foreach (ResourceDictionary item in this.Resources.MergedDictionaries)
+            {
+                if (item.Source != null && item.Source.OriginalString.Contains(@"Resources\"))
+                {
+                    obj = item;
+                }
+            }
+
+
             base.OnStartup(e);
         }
 
+
+        public void ChangeLangage(Uri dictionnaryUri)
+        {
+            if (String.IsNullOrEmpty(dictionnaryUri.OriginalString) == false)
+            {
+                ResourceDictionary objNewLanguageDictionary = (ResourceDictionary)(LoadComponent(dictionnaryUri));
+
+                if (objNewLanguageDictionary != null)
+                {
+                    this.Resources.MergedDictionaries.Remove(obj);
+                    this.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+
+                    CultureInfo culture = new CultureInfo((string)Application.Current.Resources["Culture"]);
+                    Thread.CurrentThread.CurrentCulture = culture;
+                    Thread.CurrentThread.CurrentUICulture = culture;
+                }
+            }
+        }
 
     }
 }

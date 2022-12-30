@@ -47,18 +47,6 @@ namespace appWPF.Commands
                 differentialFile(source, destination, name);
                 differentialDirectory(source, destination, name);
             }
-
-
-
-            /*try
-            {
-                await _savesStore.Delete(save.Id);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }*/
         }
 
 
