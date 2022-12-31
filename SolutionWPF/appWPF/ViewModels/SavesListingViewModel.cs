@@ -55,7 +55,7 @@ namespace appWPF.ViewModels
 
         }
 
-        //
+        
 
         private void SaveStore_SaveDeleted(Guid id)
         {
@@ -85,7 +85,7 @@ namespace appWPF.ViewModels
 
             return viewModel;
         }
-
+        //
         private void SaveStore_SaveUpdated(Save save)
         {
             SavesListingItemViewModel saveViewModel = _savesListingItemViewModels.FirstOrDefault(y => y.Save.Id == save.Id);

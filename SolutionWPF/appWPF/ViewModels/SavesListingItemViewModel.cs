@@ -17,7 +17,7 @@ namespace appWPF.ViewModels
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
         public ICommand ExecuteCommand { get; }
-
+        //
 
         public SavesListingItemViewModel(Save save, SavesStore savesStore, ModalNavigationStore modalNavigationStore)
         {
@@ -26,6 +26,7 @@ namespace appWPF.ViewModels
             ExecuteCommand = new ExecuteSaveCommand(this, savesStore);
             EditCommand = new OpenEditSaveCommand(this, savesStore, modalNavigationStore);
             DeleteCommand = new DeleteSaveCommand(this, savesStore);
+            //
         }
 
         public void Update(Save save)

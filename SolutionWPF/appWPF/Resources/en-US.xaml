@@ -19,5 +19,6 @@
     <system:String x:Key="Langue1">French</system:String>
     <system:String x:Key="Langue2">English</system:String>
     <system:String x:Key="DefaultMessage">Please select a Backup to see more details.</system:String>
+    <system:String x:Key="ExecuteAllSave">Execute all saves</system:String>
 
 </ResourceDictionary>

@@ -19,4 +19,5 @@
     <system:String x:Key="Langue1">Français</system:String>
     <system:String x:Key="Langue2">Anglais</system:String>
     <system:String x:Key="DefaultMessage">Veuillez sélectionner une sauvegarde pour voir plus de détails.</system:String>
+    <system:String x:Key="ExecuteAllSave">Exécuter toutes les sauvegardes</system:String>
 </ResourceDictionary>

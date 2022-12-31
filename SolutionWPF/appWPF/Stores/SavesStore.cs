@@ -35,6 +35,15 @@ namespace appWPF.Stores
             _saves = new List<Save>();
         }
 
+        //
+        
+        public async Task GetAllSave()
+        {
+            IEnumerable<Save> saves = await _getAllSavesQuery.Execute();
+        }
+
+        //
+
         public async Task Load()
         {
             IEnumerable<Save> saves = await _getAllSavesQuery.Execute();

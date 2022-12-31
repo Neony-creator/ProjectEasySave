@@ -14,12 +14,14 @@ namespace appWPF.ViewModels
         public SavesListingViewModel SavesListingViewModel { get; }
         public SaveDetailsViewModel SaveDetailsViewModel { get; }
         public ICommand CreateSave { get; }
+        public ICommand ExecuteAllSaves { get; }
 
         public SavesViewModel(SavesStore savesStore, SelectedSaveStore _selectedSaveStore, ModalNavigationStore modalNavigationStore)
         {
             SavesListingViewModel = SavesListingViewModel.LoadViewModel(savesStore, _selectedSaveStore, modalNavigationStore);
             SaveDetailsViewModel = new SaveDetailsViewModel(_selectedSaveStore);
 
+            ExecuteAllSaves = new ExecuteAllSavesCommand(savesStore);
             CreateSave = new OpenAddSaveCommand(savesStore, modalNavigationStore);
         }
     }

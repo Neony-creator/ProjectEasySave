@@ -48,6 +48,9 @@ namespace appWPF
             _deleteSaveCommand = new DeleteSaveCommand(_savesDbContextFactory);
             _savesStore = new SavesStore(_getAllSavesQuery, _createSaveCommand, _updateSaveCommand, _deleteSaveCommand);
             _selectedSaveStore = new SelectedSaveStore(_savesStore);
+            //
+            
+
         }
         protected override void OnStartup(StartupEventArgs e)
         {
