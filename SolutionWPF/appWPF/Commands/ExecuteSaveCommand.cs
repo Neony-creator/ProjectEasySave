@@ -34,6 +34,7 @@ namespace appWPF.Commands
             string source = save.SourceDisplay;
             string destination = save.DestinationDisplay;
             string typeOfBackUp = save.TypeDisplay;
+            countNbTotalFile(name, source);
             List<Task> taskss = new List<Task>();
 
             if (typeOfBackUp == "complete")

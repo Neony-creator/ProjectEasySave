@@ -34,12 +34,12 @@ namespace appWPF.Commands
 
             foreach (Save save in _saveStore.Saves)
             {
+
                 string name = save.SaveName;
                 string source = save.SourceDisplay;
                 string destination = save.DestinationDisplay;
                 string typeOfBackUp = save.TypeDisplay;
-
-                MessageBox.Show("test");
+                countNbTotalFile(name, source);
                 if (typeOfBackUp == "complete")
                 {
                     tasks.Add(Task.Run(() => completeFile(source, destination, name)));
