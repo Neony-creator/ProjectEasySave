@@ -22,6 +22,7 @@ namespace appWPF.Commands
         Mutex mutexDailyXml = new Mutex();
         Mutex mutexStateXml = new Mutex();
         Mutex mutexStateJson = new Mutex();
+        Mutex mutexManager = new Mutex();
 
         public override async void Execute(object parameter)
         {
@@ -317,17 +318,28 @@ namespace appWPF.Commands
 
                 int nbFile = 0;
                 nbFile = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Length;
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                config.AppSettings.Settings.Remove("nbTotalFileXml" + name);
-                config.AppSettings.Settings.Remove("newLog" + name);
-                config.AppSettings.Settings.Remove("nbTotalFileJson" + name);
-                config.AppSettings.Settings.Remove("nbTotalFilePerma" + name);
-                config.AppSettings.Settings.Add("nbTotalFileJson" + name, nbFile.ToString());
-                config.AppSettings.Settings.Add("newLog" + name, "true");
-                config.AppSettings.Settings.Add("nbTotalFileXml" + name, nbFile.ToString());
-                config.AppSettings.Settings.Add("nbTotalFilePerma" + name, nbFile.ToString());
-                config.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection("appSettings");
+                if (mutexManager.WaitOne())
+                {
+                    try
+                    {
+                        Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                        config.AppSettings.Settings.Remove("nbTotalFileXml" + name);
+                        config.AppSettings.Settings.Remove("newLog" + name);
+                        config.AppSettings.Settings.Remove("nbTotalFileJson" + name);
+                        config.AppSettings.Settings.Remove("nbTotalFilePerma" + name);
+                        config.AppSettings.Settings.Add("nbTotalFileJson" + name, nbFile.ToString());
+                        config.AppSettings.Settings.Add("newLog" + name, "true");
+                        config.AppSettings.Settings.Add("nbTotalFileXml" + name, nbFile.ToString());
+                        config.AppSettings.Settings.Add("nbTotalFilePerma" + name, nbFile.ToString());
+                        config.Save(ConfigurationSaveMode.Modified);
+                        ConfigurationManager.RefreshSection("appSettings");
+                    }
+                    finally
+                    {
+                        mutexManager.ReleaseMutex();
+                    }
+                }
+                
             }
             catch (Exception e)
             {
@@ -387,8 +399,21 @@ namespace appWPF.Commands
 
         public void CreateJsonState(string name, string sourceFile, string destinationFile, long size)
         {
-            string temp = ConfigurationManager.AppSettings["nbTotalFileJson" + name];
-            string newLog = ConfigurationManager.AppSettings["newLog" + name];
+            string temp = "0";
+            string newLog = "false";
+            if (mutexManager.WaitOne())
+            {
+                try
+                {
+                    temp = ConfigurationManager.AppSettings["nbTotalFileJson" + name];
+                    newLog = ConfigurationManager.AppSettings["newLog" + name];
+                }
+                finally
+                {
+                    mutexManager.ReleaseMutex();
+                }
+            }
+            
 
             TotalsizeJson = size + TotalsizeJson;
             string state = "Actif";
@@ -403,20 +428,34 @@ namespace appWPF.Commands
                 Console.WriteLine(e);
             }
             nbTotalFile = nbTotalFile - 1;
-
-
+            if (mutexManager.WaitOne())
+            {
+                try
+                {
+                    Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                    config.AppSettings.Settings.Remove("nbTotalFileJson" + name);
+                    config.AppSettings.Settings.Add("nbTotalFileJson" + name, nbTotalFile.ToString());
+                    config.Save(ConfigurationSaveMode.Modified);
+                    ConfigurationManager.RefreshSection("appSettings");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                finally
+                {
+                    mutexManager.ReleaseMutex();
+                }
+            }
             
+
             try
             {
                 stateLog stateO = new stateLog();
                 if (mutexStateJson.WaitOne())
                     try
                     {
-                        Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                        config.AppSettings.Settings.Remove("nbTotalFileJson" + name);
-                        config.AppSettings.Settings.Add("nbTotalFileJson" + name, nbTotalFile.ToString());
-                        config.Save(ConfigurationSaveMode.Modified);
-                        ConfigurationManager.RefreshSection("appSettings");
+                        
                         List<stateLog> listJsonState = new List<stateLog>();
                         if (File.Exists("StateLog.json"))
                         {
@@ -471,18 +510,39 @@ namespace appWPF.Commands
                         var json = JsonSerializer.Serialize(listJsonState, options: new() { WriteIndented = true });
                         File.WriteAllText(@"StateLog.json", json);
                         Console.WriteLine(json);
+                                                
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.ToString());
+                    }
+                    finally
+                    {
+                        mutexStateJson.ReleaseMutex();
+                    }
+
+                if (mutexManager.WaitOne())
+                {
+                    try
+                    {
                         Configuration config2 = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                         config2.AppSettings.Settings.Remove("newLog" + name);
                         config2.AppSettings.Settings.Add("newLog" + name, "false");
                         config2.Save(ConfigurationSaveMode.Modified);
                         ConfigurationManager.RefreshSection("appSettings");
                     }
-
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.ToString());
+                    }
                     finally
                     {
-                        mutexStateJson.ReleaseMutex();
+                        mutexManager.ReleaseMutex();
                     }
-                
+                }           
+
+
+
 
             }
             catch (Exception e)
@@ -546,8 +606,21 @@ namespace appWPF.Commands
 
         public void CreateXmlState(string name, string sourceFile, string destinationFile, long size)
         {
-            string temp = ConfigurationManager.AppSettings["nbTotalFileXml" + name];
-            string newLog = ConfigurationManager.AppSettings["newLog" + name];
+            string temp = "0";
+            string newLog = "false";
+            if (mutexManager.WaitOne())
+            {
+                try
+                {
+                    temp = ConfigurationManager.AppSettings["nbTotalFileXml" + name];
+                    newLog = ConfigurationManager.AppSettings["newLog" + name];
+                }
+                finally
+                {
+                    mutexManager.ReleaseMutex();
+                }
+            }
+            
             TotalsizeXml = size + TotalsizeXml;
             string state = "Actif";
             int nbTotalFile = 0;
@@ -560,16 +633,34 @@ namespace appWPF.Commands
             {
                 Console.WriteLine(e);
             }
-            if(mutexStateXml.WaitOne())
+
+            nbTotalFile = nbTotalFile - 1;
+
+            if (mutexManager.WaitOne())
             {
                 try
                 {
-                    nbTotalFile = nbTotalFile - 1;
                     Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                     config.AppSettings.Settings.Remove("nbTotalFileXml" + name);
                     config.AppSettings.Settings.Add("nbTotalFileXml" + name, nbTotalFile.ToString());
                     config.Save(ConfigurationSaveMode.Modified);
                     ConfigurationManager.RefreshSection("appSettings");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                finally
+                {
+                    mutexManager.ReleaseMutex();
+                }
+            }
+            
+            if (mutexStateXml.WaitOne())
+            {
+                try
+                {
+                   
                     List<stateLog> listXmlState = new List<stateLog>();
                     XmlSerializer DeOrserializer = new XmlSerializer(typeof(List<stateLog>));
                     
@@ -629,11 +720,7 @@ namespace appWPF.Commands
                         }
 
 
-                        Configuration config2 = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                        config2.AppSettings.Settings.Remove("newLog" + name);
-                        config2.AppSettings.Settings.Add("newLog" + name, "false");
-                        config2.Save(ConfigurationSaveMode.Modified);
-                        ConfigurationManager.RefreshSection("appSettings");
+                        
                     
                 }
                 catch(Exception e)
@@ -645,7 +732,27 @@ namespace appWPF.Commands
                 {
                     mutexStateXml.ReleaseMutex();
                 }
-                
+
+                if (mutexManager.WaitOne())
+                {
+                    try
+                    {
+                        Configuration config2 = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                        config2.AppSettings.Settings.Remove("newLog" + name);
+                        config2.AppSettings.Settings.Add("newLog" + name, "false");
+                        config2.Save(ConfigurationSaveMode.Modified);
+                        ConfigurationManager.RefreshSection("appSettings");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                    finally
+                    {
+                        mutexManager.ReleaseMutex();
+                    }
+                }
+
             }
             
         }
