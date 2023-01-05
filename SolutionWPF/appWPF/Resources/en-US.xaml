@@ -20,5 +20,9 @@
     <system:String x:Key="Langue2">English</system:String>
     <system:String x:Key="DefaultMessage">Please select a Backup to see more details.</system:String>
     <system:String x:Key="ExecuteAllSave">Execute all saves</system:String>
+    <system:String x:Key="ExecuteSomeSave">Execute Some Saves</system:String>
+    <system:String x:Key="TypeLogWindow">Choice of the type of logs</system:String>
+    <system:String x:Key="Crypt">Crypt</system:String>
+    <system:String x:Key="TypeLogForm">Choose type of logs (Json, Xml, JsonXml) :</system:String>
 
 </ResourceDictionary>

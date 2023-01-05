@@ -29,7 +29,7 @@
 
             <Button 
                 Grid.Column="1" 
-                Content="Exécuter des sauvegardes" 
+                Content="{DynamicResource ExecuteSomeSave}" 
                 FontSize="16"
                 Command="{Binding ExecuteSomeSaves}" Cursor="Hand"/>
 
@@ -74,7 +74,7 @@
 
                 <Button 
                 Grid.Column="0" 
-                Content="Crypter" 
+                Content="{DynamicResource Crypt}" 
                 FontSize="16"
                 Command="{Binding Crypt}" Cursor="Hand"/>
 
@@ -82,7 +82,7 @@
                 
                 <Button 
                 Grid.Column="2" 
-                Content="Choisir Type log" 
+                Content="{DynamicResource TypeLogWindow}" 
                 FontSize="16"
                 Command="{Binding TypeLog}" Cursor="Hand"/>
 

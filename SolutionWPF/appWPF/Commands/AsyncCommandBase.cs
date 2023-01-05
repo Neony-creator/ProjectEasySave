@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Configuration;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace appWPF.Commands
 {
@@ -273,14 +274,27 @@ namespace appWPF.Commands
 
         public void ApplicatechoiceLog(string name, string sourceFile, string destinationFile, long size, double timeTransfert)
         {
-            CreateJsonDaily(name, sourceFile, destinationFile, size, timeTransfert);
+            /*CreateJsonDaily(name, sourceFile, destinationFile, size, timeTransfert);
             CreateJsonState(name, sourceFile, destinationFile, size);          
 
             CreateXmlDaily(name, sourceFile, destinationFile, size, timeTransfert);
 
-            CreateXmlState(name, sourceFile, destinationFile, size);
+            CreateXmlState(name, sourceFile, destinationFile, size);*/
+            string logformat = "JsonXml";
+            if(mutexManager.WaitOne())
+            {
+                try
+                {
+                    logformat = ConfigurationManager.AppSettings["logFormat"];
+                }
 
-            /*switch (ConfigurationManager.AppSettings["logFormat"])
+                finally
+                {
+                    mutexManager.ReleaseMutex();
+                }
+            }
+            
+            switch (logformat)
              {
                 case "Json":
                     CreateJsonState(name, sourceFile, destinationFile, size);
@@ -294,10 +308,10 @@ namespace appWPF.Commands
                     break;
 
                 case "JsonXml":
-                    CreateJsonState(name, sourceFile, destinationFile, size);
-                    CreateXmlState(name, sourceFile, destinationFile, size);
                     CreateJsonDaily(name, sourceFile, destinationFile, size, timeTransfert);
+                    CreateJsonState(name, sourceFile, destinationFile, size);
                     CreateXmlDaily(name, sourceFile, destinationFile, size, timeTransfert);
+                    CreateXmlState(name, sourceFile, destinationFile, size);
                     break;
 
                 default:
@@ -307,7 +321,7 @@ namespace appWPF.Commands
                     CreateXmlDaily(name, sourceFile, destinationFile, size, timeTransfert);
 
                     break;
-            }*/
+            }
 
         }
 
@@ -755,6 +769,90 @@ namespace appWPF.Commands
 
             }
             
+        }
+
+
+        //
+
+        private static readonly object myLock = new object();
+
+
+
+
+        public void Crypt(string filespathsource, string filespathdest)
+        {
+
+            int ThreadsNmbr = Process.GetCurrentProcess().Threads.Count;
+            string[] FilePaths = Directory.GetFiles(filespathsource);
+            Console.WriteLine("nombres de fichier " + FilePaths.Length + "\n\nnombres de threads " + ThreadsNmbr);
+            Process[] myProcess = new Process[FilePaths.Length];
+            Thread[] workerThreads = new Thread[ThreadsNmbr];
+
+            int i = 0, k = 0, s = 0;
+
+            while (k < FilePaths.Length)
+            {
+                if (FilePaths.Length - k > ThreadsNmbr)
+                {
+                    Console.WriteLine("\nboucle 1 " + k);
+                    for (i = 0; i < ThreadsNmbr; i++)
+                    {
+
+                        workerThreads[i] = new Thread(() =>
+                        {
+                            lock (myLock)
+                            {
+                                Console.WriteLine("\nId of current running " + "thread: {0}", Thread.CurrentThread.ManagedThreadId);
+                                Console.WriteLine("je gere le fichier numero " + s);
+                                myProcess[i] = new Process();
+                                myProcess[i].StartInfo.FileName = @"C:\Users\Nico0\Downloads\CryptoSoft_1\CryptoSoft\CryptoSoft\bin\Debug\netcoreapp3.1\CryptoSoft.exe";
+                                myProcess[i].StartInfo.ArgumentList.Add(FilePaths[s]);
+                                myProcess[i].StartInfo.ArgumentList.Add(filespathdest+@"\file" + s + "crypté.txt");
+                                myProcess[i].StartInfo.ArgumentList.Add("haha1234875");
+                                myProcess[i].Start();
+                                s = s + 1;
+                            }
+                        });
+                        workerThreads[i].Start();
+
+                    }
+
+                    for (i = 0; i < ThreadsNmbr; i++)
+                    {
+                        workerThreads[i].Join();
+                    }
+                    k = k + ThreadsNmbr;
+                    s = k;
+                }
+                else
+                {
+                    s = k;
+                    Console.WriteLine("\n\nje commence depuis " + s);
+
+                    Enumerable.Range(0, FilePaths.Length - k).ToList().ForEach(f =>
+                    {
+
+                        new Thread(() =>
+                        {
+                            lock (myLock)
+                            {
+                                Console.WriteLine("\nId of current running " + "thread: {0}", Thread.CurrentThread.ManagedThreadId);
+                                Console.WriteLine("je gere le fichier numero " + s);
+                                myProcess[i] = new Process();
+                                myProcess[i].StartInfo.FileName = @"C:\Users\Nico0\Downloads\CryptoSoft_1\CryptoSoft\CryptoSoft\bin\Debug\netcoreapp3.1\CryptoSoft.exe";
+                                myProcess[i].StartInfo.ArgumentList.Add(FilePaths[s]);
+                                myProcess[i].StartInfo.ArgumentList.Add(filespathdest+@"\file" + s + "crypté.txt");
+                                myProcess[i].StartInfo.ArgumentList.Add("haha1234875");
+                                myProcess[i].Start();
+                                i = i + 1;
+                                s = s + 1;
+                            }
+                        }).Start();
+                        k = k + ThreadsNmbr;
+                    });
+                }
+            }
+
         }
 
     }

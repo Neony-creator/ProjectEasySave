@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeader}" Text="Execute Some Save"/>
+        <TextBlock Grid.Row="0" Style="{StaticResource PageHeader}" Text="{StaticResource ExecuteSomeSave}"/>
 
         <components:ExecuteSaveDetailsForm Grid.Row="1" Margin="0 30 0 0" DataContext="{Binding SavesListingViewModel}"/>
         <components:ExecuteSomeSaveButtonForm Grid.Row="2" Margin="0 30 0 0" DataContext="{Binding ExecuteSomeSaveFormViewModel}"/>

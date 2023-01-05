@@ -56,6 +56,18 @@ namespace appWPF.Commands
             }
 
             await Task.WhenAll(tasks);
+
+
+            foreach (Save save in _saveStore.Saves)
+            {
+                string source = save.SourceDisplay;
+                string destination = save.DestinationDisplay;
+
+                Crypt(source, destination);
+            }
+
+
+            //
         }
 
 

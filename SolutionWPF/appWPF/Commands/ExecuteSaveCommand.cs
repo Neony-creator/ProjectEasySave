@@ -53,6 +53,9 @@ namespace appWPF.Commands
         
 
         await Task.WhenAll(taskss);
+
+
+        Crypt(source, destination);
     }
 
 
