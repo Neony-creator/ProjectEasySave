@@ -17,6 +17,13 @@
         <DataTemplate DataType="{x:Type vms:EditSaveViewModel}">
             <views:EditSaveView/>
         </DataTemplate>
+        <!---->
+        <DataTemplate DataType="{x:Type vms:ExecuteSomeSaveViewModel}">
+            <views:ExecuteSaveView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:TypeLogViewModel}">
+            <views:TypeLogView/>
+        </DataTemplate>
     </Window.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Margin="20">

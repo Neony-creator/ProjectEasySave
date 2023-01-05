@@ -70,7 +70,7 @@
 
         <WrapPanel Grid.Row="1" Margin="0 30 0 0">
             <Button Command="{Binding SubmitCommand}" Content="{DynamicResource CreateButton}" Margin="0 0 5 0" Cursor="Hand"/>
-            <Button Command="{Binding CancelCommand}" Content="{DynamicResource Back}" Style="{StaticResource ButtonSecondary}"/>
+            <Button Command="{Binding CancelCommand}" Content="{DynamicResource Back}" Style="{StaticResource ButtonSecondary}" Cursor="Hand"/>
         </WrapPanel>
     </Grid>
 </UserControl>

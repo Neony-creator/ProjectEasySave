@@ -21,21 +21,30 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Style="{StaticResource PageHeader}" Text="Easy Save"/>
 
-            
             <Button 
                 Grid.Column="1" 
-                Content="{DynamicResource ExecuteAllSave}" 
+                Content="Exécuter des sauvegardes" 
                 FontSize="16"
-                Command="{Binding ExecuteAllSaves}" Cursor="Hand"/>
+                Command="{Binding ExecuteSomeSaves}" Cursor="Hand"/>
 
             <TextBlock Grid.Column="2" Margin="10 0 10 0"/>
 
             <Button 
                 Grid.Column="3" 
+                Content="{DynamicResource ExecuteAllSave}" 
+                FontSize="16"
+                Command="{Binding ExecuteAllSaves}" Cursor="Hand"/>
+
+            <TextBlock Grid.Column="4" Margin="10 0 10 0"/>
+
+            <Button 
+                Grid.Column="5" 
                 Content="{DynamicResource CreateButton}" 
                 FontSize="16"
                 Command="{Binding CreateSave}" Cursor="Hand"/>
@@ -55,16 +64,31 @@
         <Border Grid.Row="2" Padding="5" TextBlock.FontSize="16">
             <Grid>
             <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0"/>
+                <Button 
+                Grid.Column="0" 
+                Content="Crypter" 
+                FontSize="16"
+                Command="{Binding Crypt}" Cursor="Hand"/>
 
-                <TextBlock Grid.Column="1" Text="{DynamicResource ChangeLangage}"/>
+                <TextBlock Grid.Column="1" Margin="10 0 0 10"/>
+                
+                <Button 
+                Grid.Column="2" 
+                Content="Choisir Type log" 
+                FontSize="16"
+                Command="{Binding TypeLog}" Cursor="Hand"/>
 
-                <Border Grid.Column="2"  Margin="10 0 10 0" >
+                <TextBlock Grid.Column="3" Text="{DynamicResource ChangeLangage}"/>
+
+                <Border Grid.Column="4"  Margin="10 0 10 0" >
                     <Grid Background="DeepSkyBlue">
                 <custom:DropdownMenu x:Name="dropdown" Margin="5 0 5 0">
                     <Border Background="White" BorderBrush="Gray" BorderThickness="1">

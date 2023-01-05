@@ -14,6 +14,7 @@ namespace appWPF.ViewModels
         public ViewModelBase CurrentModalViewModel => modalNavigationStore.CurrentViewModel;
         public bool IsModalOpen => modalNavigationStore.IsOpen;
         public SavesViewModel SavesViewModel { get; }
+
         public MainViewModel(ModalNavigationStore modalNavigationStore, SavesViewModel savesViewModel)
         {
             this.modalNavigationStore = modalNavigationStore;
